@@ -1,14 +1,15 @@
-# Compiled Python files
-*.pyc
-
-# Folder view configuration files
 .DS_Store
-Desktop.ini
 
-# Thumbnail cache files
-._*
-Thumbs.db
+# Local files (with possibly sensitive info)
+*.local
 
-# Files that might appear on external disks
-.Spotlight-V100
-.Trashes
+# Atom folder
+.atom/.apm
+.atom/blob-store
+.atom/storage
+.atom/packages
+.atom/compile-cache
+.atom/dev
+.atom/.npm
+.atom/.node-gyp
+.atom/.gitignore

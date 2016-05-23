@@ -1,0 +1,114 @@
+"*":
+  Zen: {}
+  "atom-material-ui":
+    colors:
+      accentColor:
+        red: 246
+        green: 243
+        blue: 237
+        alpha: 1
+    fonts: {}
+    tabs:
+      compactTabs: true
+      tintedTabBar: true
+    treeView:
+      blendTabs: true
+      compactList: true
+    ui:
+      animations: false
+      panelContrast: true
+  "autocomplete-bibtex":
+    bibtex: [
+      "/Users/ad.3103/Dropbox/Reading/Library/library.bib"
+    ]
+  "autocomplete-plus":
+    autoActivationDelay: 150
+    fileBlacklist: [
+      "*.tex"
+    ]
+    includeCompletionsFromAllBuffers: false
+    useAlternateScoring: false
+  core:
+    audioBeep: false
+    disabledPackages: [
+      "language-gfm"
+      "markdown-preview"
+      "linter-write-good"
+    ]
+    projectHome: "/Users/ad.3103/Code/repos/"
+    themes: [
+      "atom-material-ui"
+      "pen-paper-coffee-syntax"
+    ]
+  editor:
+    backUpBeforeSaving: true
+    fontFamily: "Ubuntu Mono"
+    fontSize: 13
+    invisibles: {}
+    scrollPastEnd: true
+    softWrap: true
+    softWrapAtPreferredLineLength: true
+    softWrapHangingIndent: 4
+    tabLength: 4
+    tabType: "soft"
+  "exception-reporting":
+    userId: "0443359c-b234-d917-c2e8-6b6912bdd8c3"
+  latex:
+    alwaysOpenResultInAtom: true
+    buildOnSave: true
+  "markdown-preview-plus":
+    enableLatexRenderingByDefault: true
+    enablePandoc: true
+    pandocArguments: [
+      "--smart"
+    ]
+    pandocBIBFileFallback: "/Users/ad.3103/Dropbox/Reading/Library/library.bib"
+    pandocBibliography: true
+    pandocCSLFileFallback: "/Users/ad.3103/.adamaltmejd/pandoc/chicago-author-date-adam.csl"
+    pandocMarkdownFlavor: "markdown-raw_tex+tex_math_single_backslash+yaml_metadata_block+definition_lists+backtick_code_blocks+fenced_code_blocks+auto_identifiers+inline_notes+raw_html+pipe_tables+autolink_bare_uris+ascii_identifiers+intraword_underscores+strikeout+hard_line_breaks+shortcut_reference_links"
+    pandocPath: "/usr/local/bin/pandoc"
+    pandocRemoveReferences: false
+    useLazyHeaders: false
+  "markdown-writer": {}
+  "package-sync":
+    createOnChange: true
+    forceOverwrite: true
+  "pdf-view":
+    fitToWidthOnOpen: true
+  "r-exec":
+    advancePosition: true
+    whichApp: "iTerm"
+  welcome:
+    showOnStartup: false
+".beamer.latex.tex.text":
+  editor:
+    softWrapHangingIndent: 4
+    tabLength: 4
+".bibtex.text":
+  editor:
+    softWrapHangingIndent: 4
+    tabLength: 4
+".gfm.source":
+  editor:
+    softWrapHangingIndent: 4
+".latex.log.text":
+  editor:
+    softWrapHangingIndent: 4
+    tabLength: 4
+".latex.memoir.tex.text":
+  editor:
+    softWrapHangingIndent: 4
+    tabLength: 4
+".latex.tex.text":
+  editor:
+    softWrapHangingIndent: 4
+    tabLength: 4
+".md.text":
+  editor:
+    softWrapHangingIndent: 4
+".tex.text":
+  editor:
+    softWrapHangingIndent: 4
+"source.gfm":
+  editor:
+    softWrap: true
