@@ -3,26 +3,29 @@
 # Run this script when setting up a new computer
 echo "Installing dotfiles on new computer..."
 
-# Wipe all (default) app icons from the Dock
-# This is only really useful when setting up a new Mac, or if you don’t use
-# the Dock to launch apps.
-defaults write com.apple.dock persistent-apps -array
-
 echo "Install applications with Homebrew? (Y/N)"
 read -k 1 REPLY; echo ''
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     # Install homebrew if not already installed
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    if [ ! -x /usr/local/bin/brew ]; then
+        echo "Installing Homebrew..."
+        /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    fi
+
+    # Put Brew on PATH temporarily
+    export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 
     # If brew is already installed make sure its updated
     brew update
     brew upgrade --all --cleanup
 
     # Run Homebrew through Brewfile
-    brew bundle
+    brew tap Homebrew/bundle
+    brew bundle --file=".Brewfile"
 
     # Remove outdated versions from the cellar.
     brew cleanup
+    brew cask cleanup
 
     # Check so everything is in order
     brew doctor
@@ -59,6 +62,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     unset src dst
 
     # We don't want the whole .atom folder in Dropbox so just symlink relevant files instead
+    if [ ! -d ~/.atom/ ]; then; mkdir ~/.atom; fi
     for src in ~/.adamaltmejd/atom/*; do
         dst="$HOME/.atom/$(basename "$src")"
 
@@ -74,13 +78,13 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     unset src dst
 
     # Symlink the music and pictures folders
-    mv ~/Music ~/Music-old
-    mv ~/Picture ~/Pictures-old
+    sudo mv ~/Music ~/Music-old
+    sudo mv ~/Pictures ~/Pictures-old
     ln -s ~/Dropbox/Music ~/Music
     ln -s ~/Dropbox/Pictures ~/Pictures
 
-    mkdir --parent "~/Library/Application Support/Sublime Text 3/Packages"
-    ln -s "~/Dropbox/Sync/sublime-text3/User" "~/Library/Application Support/Sublime Text 3/Packages/User"
+    mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 3/Packages
+    ln -s ~/Dropbox/Sync/sublime-text3/User ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
 fi
 
 echo 'Ta da!'

@@ -363,7 +363,7 @@ defaults write com.apple.dock show-process-indicators -bool true
 # Wipe all (default) app icons from the Dock
 # This is only really useful when setting up a new Mac, or if you don’t use
 # the Dock to launch apps.
-#defaults write com.apple.dock persistent-apps -array
+defaults write com.apple.dock persistent-apps -array
 
 # Show only open applications in the Dock
 defaults write com.apple.dock static-only -bool true
@@ -489,8 +489,13 @@ defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 # Terminal & iTerm 2                                                          #
 ###############################################################################
 
+# https://www.iterm2.com/documentation-hidden-settings.html
+
 # Don’t display the annoying prompt when quitting iTerm
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false
+
+# Sync settings
+# defaults write com.googlecode.iterm2 PrefsCustomFolder -string "~/Dropbox/Sync/iterm2"
 
 ###############################################################################
 # Time Machine                                                                #
@@ -627,7 +632,7 @@ defaults write com.twitter.twitter-mac HideInBackground -bool true
 
 for app in "Activity Monitor" "Address Book" "Calendar" "Contacts" "cfprefsd" \
 	"Dock" "Finder" "Google Chrome" "Messages" \
-	"Photos" "Safari" "SystemUIServer" "Terminal" \
+	"Photos" "Safari" "SystemUIServer" \
 	"Transmission" "Twitter" "iCal"; do
 	killall "${app}" &> /dev/null
 done
