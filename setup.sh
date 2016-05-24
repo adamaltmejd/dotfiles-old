@@ -40,11 +40,11 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
 
-echo "Symlink dotfiles (Y/N)"
+echo "Create symlinks (Y/N)"
 read -k 1 REPLY; echo ''
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     echo "All files that would have been overwritten will be backed up to ~/dotfiles_backup/"
-    for src in $(find -H `pwd -P` -maxdepth 1 -name '.*' -not -name '.gitignore' -not -name '.DS_Store' -not -path '*.git'); do
+    for src in $(find -H `pwd -P` -maxdepth 1 -name '.*' -not -name '.gitignore' -not -name '.DS_Store' -not -path '*.git' -not -path '*.atom'); do
         dst="$HOME/$(basename "$src")"
 
         # If file exists move it to backup
@@ -57,6 +57,27 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
         ln -s "$src" "$dst"
     done
     unset src dst
+
+    # We don't want the whole .atom folder in Dropbox so just symlink relevant files instead
+    for src in ~/.adamaltmejd/atom/*; do
+        dst="$HOME/.atom/$(basename "$src")"
+
+        # If file exists move it to backup
+        if [[ -f "$dst" || -d "$dst" || -L "$dst" ]]; then
+            if [ ! -d ~/dotfiles_backup/ ]; then; mkdir ~/dotfiles_backup; fi
+            mv "$dst" ~/dotfiles_backup
+        fi
+
+        # Create symbolic link
+        ln -s "$src" "$dst"
+    done
+    unset src dst
+
+    # Symlink the music and pictures folders
+    mv ~/Music ~/Music-old
+    mv ~/Picture ~/Pictures-old
+    ln -s ~/Dropbox/Music ~/Music
+    ln -s ~/Dropbox/Pictures ~/Pictures
 fi
 
 echo 'Ta da!'
