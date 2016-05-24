@@ -78,6 +78,9 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     mv ~/Picture ~/Pictures-old
     ln -s ~/Dropbox/Music ~/Music
     ln -s ~/Dropbox/Pictures ~/Pictures
+
+    mkdir --parent "~/Library/Application Support/Sublime Text 3/Packages"
+    ln -s "~/Dropbox/Sync/sublime-text3/User" "~/Library/Application Support/Sublime Text 3/Packages/User"
 fi
 
 echo 'Ta da!'
