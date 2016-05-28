@@ -3,10 +3,10 @@
   "atom-material-ui":
     colors:
       accentColor:
-        red: 246
-        green: 243
-        blue: 237
         alpha: 1
+        blue: 237
+        green: 243
+        red: 246
     fonts: {}
     tabs:
       compactTabs: true

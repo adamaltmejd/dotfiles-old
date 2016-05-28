@@ -80,8 +80,10 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     # Symlink the music and pictures folders
     sudo mv ~/Music ~/Music-old
     sudo mv ~/Pictures ~/Pictures-old
+    sudo mv ~/Movies ~/Movies-old
     ln -s ~/Dropbox/Music ~/Music
     ln -s ~/Dropbox/Pictures ~/Pictures
+    ln -s ~/Dropbox/Movies ~/Movies
 
     mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 3/Packages
     ln -s ~/Dropbox/Sync/sublime-text3/User ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User

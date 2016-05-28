@@ -1,8 +1,5 @@
-# Rbenv (https://github.com/sstephenson/rbenv) installed with Homebrew
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+# `.zprofile' is similar to `.zlogin', except that it is sourced before `.zshrc'.
+# `.zprofile' is meant as an alternative to `.zlogin' for ksh fans; the two
+# are not intended to be used together...
 
-# Load the shell dotfiles
-for file in ~/.adamaltmejd/{path,exports,aliases,functions}; do
-    [ -r "$file" ] && [ -f "$file" ] && source "$file";
-done;
-unset file;
+# ==> Don't use!
