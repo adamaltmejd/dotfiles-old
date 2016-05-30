@@ -27,6 +27,7 @@ brew 'archey'
 brew 'pandoc'
 brew 'pandoc-citeproc'
 brew 'tree'
+brew 'tidy-html5'
 
 cask 'dropbox'
 cask 'alfred'
