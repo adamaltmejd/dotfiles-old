@@ -10,9 +10,7 @@
 	whitespace = fix
 
 [core]
-	# Use custom `.gitignore` and `.gitattributes`
 	excludesfile = ~/.adamaltmejd/gitignore_global
-	# attributesfile = ~/.gitattributes
 
 	editor = vi
 
