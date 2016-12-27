@@ -21,7 +21,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 
     # Run Homebrew through Brewfile
     brew tap Homebrew/bundle
-    brew bundle --file=".Brewfile"
+    brew bundle
 
     # Remove outdated versions from the cellar.
     brew cleanup

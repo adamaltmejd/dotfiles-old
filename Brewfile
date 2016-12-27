@@ -1,9 +1,7 @@
-cask_args appdir: '/Applications'
-
-tap 'homebrew/bundle'
 tap 'homebrew/science'
 tap 'caskroom/cask'
-tap 'caskroom/versions'
+#tap 'caskroom/versions'
+cask_args appdir: '/Applications'
 
 # Install useful stuff
 brew 'ack'
@@ -42,7 +40,7 @@ cask 'sublime-text3'
 cask 'the-unarchiver'
 cask 'skype'
 cask 'evernote'
-cask 'iterm2-beta'
+cask 'iterm2'
 cask 'hazel'
 cask 'little-snitch'
 cask 'mactex'
