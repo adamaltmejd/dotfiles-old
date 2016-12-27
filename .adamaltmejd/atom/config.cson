@@ -2,11 +2,7 @@
   Zen: {}
   "atom-material-ui":
     colors:
-      accentColor:
-        alpha: 1
-        blue: 237
-        green: 243
-        red: 246
+      accentColor: "#f6f3ed"
     fonts: {}
     tabs:
       compactTabs: true
@@ -32,24 +28,26 @@
     audioBeep: false
     disabledPackages: [
       "language-gfm"
-      "markdown-preview"
       "linter-write-good"
+      "markdown-preview"
     ]
     projectHome: "/Users/ad.3103/Code/repos/"
+    telemetryConsent: "limited"
     themes: [
       "atom-material-ui"
       "pen-paper-coffee-syntax"
     ]
+    useCustomTitleBar: true
   editor:
     backUpBeforeSaving: true
     fontFamily: "Ubuntu Mono"
     fontSize: 13
     invisibles: {}
     scrollPastEnd: true
+    showIndentGuide: true
     softWrap: true
     softWrapAtPreferredLineLength: true
-    softWrapHangingIndent: 4
-    tabLength: 4
+    softWrapHangingIndent: 2
     tabType: "soft"
   "exception-reporting":
     userId: "0443359c-b234-d917-c2e8-6b6912bdd8c3"
@@ -82,33 +80,34 @@
     showOnStartup: false
 ".beamer.latex.tex.text":
   editor:
-    softWrapHangingIndent: 4
-    tabLength: 4
+    softWrapHangingIndent: 2
+    tabLength: 2
 ".bibtex.text":
   editor:
-    softWrapHangingIndent: 4
-    tabLength: 4
+    softWrapHangingIndent: 2
+    tabLength: 2
 ".gfm.source":
   editor:
-    softWrapHangingIndent: 4
+    softWrapHangingIndent: 2
+    tabLength: 2
 ".latex.log.text":
   editor:
-    softWrapHangingIndent: 4
-    tabLength: 4
+    softWrapHangingIndent: 2
+    tabLength: 2
 ".latex.memoir.tex.text":
   editor:
-    softWrapHangingIndent: 4
-    tabLength: 4
+    softWrapHangingIndent: 2
+    tabLength: 2
 ".latex.tex.text":
   editor:
-    softWrapHangingIndent: 4
-    tabLength: 4
+    softWrapHangingIndent: 2
+    tabLength: 2
 ".md.text":
   editor:
-    softWrapHangingIndent: 4
+    softWrapHangingIndent: 2
 ".tex.text":
   editor:
-    softWrapHangingIndent: 4
+    softWrapHangingIndent: 2
 "source.gfm":
   editor:
     softWrap: true
