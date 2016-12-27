@@ -7,14 +7,13 @@ local({
 })
 
 # Editor
-options(editor="subl")
+# options(editor="subl")
 
 # Error handling
 # options(error=traceback)
 options(showWarnCalls=T, showErrorCalls=T)
 # options(warn=2) # halt on warnings
 # options(warning.expression=quote(recover())) # use recover on warnings
-
 
 # Install packages in user library
 .libPaths("~/.R/packages")
@@ -27,7 +26,7 @@ try(options(width=Sys.getenv("COLUMNS")), silent = TRUE) # dynamic width
 # Don't load TK
 options(menu.graphics=FALSE)
 
-# [Lines 17-18]: Often, when working in the interactive console I forget a closing brace or paren. When I start a new line, R changes the prompt to "+" to indicate that it is expecting a continuation. Because "+" and ">" are the same width, though, I often don't notice and really screw things up. These two lines make the R REPL mimic the Python REPL by changing the continuation prompt to the wider "...".
+# Wider continuation prompt
 options(prompt="> ")
 options(continue="... ")
 
@@ -50,7 +49,8 @@ print.data.frame <- function(df) {
    }
 }
 
-# This snippet allows you to tab-complete package names for use in "library()" or "require()" calls. Credit for this one goes to @mikelove.
+# This snippet allows you to tab-complete package names for use in "library()"
+# or "require()" calls. Credit for this one goes to @mikelove.
 utils::rc.settings(ipck=TRUE)
 
 # Code to autoload packages in interactive console
@@ -62,7 +62,6 @@ utils::rc.settings(ipck=TRUE)
 # if(interactive()){
 #   invisible(sapply(auto.loads, sshhh))
 # }
-
 
 # .First() run at the start of every R session.
 .First <- function() {
