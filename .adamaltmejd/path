@@ -6,9 +6,8 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/X
 # Matlab and mlint
 export PATH="/Applications/MATLAB_R2014b.app/bin:/Applications/MATLAB_R2014b.app/bin/maci64:$PATH"
 
-# RBENV
-# export PATH="$HOME/.rbenv/bin:$PATH"
-# export RBENV_ROOT=/usr/local/var/rbenv
-
 # MANUAL
 export MANPATH="/usr/local/man:$MANPATH"
+
+# Rbenv (https://github.com/sstephenson/rbenv) installed with Homebrew
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
