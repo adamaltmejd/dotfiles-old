@@ -6,7 +6,7 @@ update_script() {
     sudo softwareupdate -i -a
 
     echo "Updating brew"
-    brew update && brew upgrade --all --cleanup
+    brew update && brew upgrade --cleanup
 
     echo "Updating NPM"
     #update npm itself (node is updated through brew)
@@ -32,11 +32,13 @@ update_script() {
     echo "Updating Atom"
     apm upgrade --no-confirm
 
-    echo "Updating Julia"
-    julia --eval "Pkg.update()"
+    # echo "Updating Julia"
+    # julia --eval "Pkg.update()"
 
     echo "Updating R"
     Rscript -e "update.packages(ask=FALSE, checkBuilt=TRUE)"
+
+    echo "update_script finished!"
 }
 
 # # Simple calculator
