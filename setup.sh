@@ -31,10 +31,10 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     brew doctor
 fi
 
-echo "Set new OSX default preferences? (Y/N)"
+echo "Set new MacOS default preferences? (Y/N)"
 read -k 1 REPLY; echo ''
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    source .adamaltmejd/osx
+    source .adamaltmejd/macos
 fi
 
 echo "Install oh-my-zsh? (Y/N)"
@@ -76,6 +76,17 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
         ln -s "$src" "$dst"
     done
     unset src dst
+
+    # Symlink gpg conf files
+    if [ ! -d ~/.gnupg/ ]; then; mkdir ~/.gnupg; fi
+    for src in "gpg.conf" "gpg-agent.conf"; do
+        src="$(pwd -P)/.adamaltmejd/$src"
+        dst="$HOME/.gnupg/$(basename "$src")"
+        if [[ -f "$dst" || -d "$dst" || -L "$dst" ]]; then
+            mv "$dst" "$dst-debug"
+        fi
+        ln -s "$src" "$dst"
+    done
 
     # Symlink the music and pictures folders
     sudo mv ~/Music ~/Music-old

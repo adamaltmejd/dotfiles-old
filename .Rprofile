@@ -20,8 +20,8 @@ options(showWarnCalls=T, showErrorCalls=T)
 
 options(stringsAsFactors=FALSE)
 options(max.print=100)
-try(options(width=Sys.getenv("COLUMNS")), silent = TRUE) # dynamic width
-# options(width = 80)
+#try(options(width=Sys.getenv("COLUMNS")), silent = TRUE) # dynamic width
+options(width = 80)
 
 # Don't load TK
 options(menu.graphics=FALSE)
@@ -36,7 +36,9 @@ q <- function(save="no", ...) {
 }
 
 # Enables the colorized output from R (provided by the colorout package) on appropriate consoles.
-if(Sys.getenv("TERM") %in% c("xterm-256color", "screen")) { library("colorout") }
+if(Sys.getenv("TERM") %in% c("xterm-256color", "screen")) {
+    suppressMessages(require("colorout"))
+}
 
 # Redefine print data frame to only print first 5 and last 5 rows of long datasets.
 print.data.frame <- function(df) {
@@ -71,5 +73,5 @@ utils::rc.settings(ipck=TRUE)
 .Last <- function() {
     # cat("\nGoodbye at ", date(), "\n")
 }
-# Update packages on stratup
+# Update packages on startup
 # update.packages(ask=FALSE, checkBuilt=TRUE)

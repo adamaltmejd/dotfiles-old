@@ -1,9 +1,9 @@
 # Local/private config goes in the include
 [include]
-        path = ~/.adamaltmejd/gitconfig.local
+    path = ~/.adamaltmejd/gitconfig.local
 
 [hub]
-        protocol = https
+    protocol = https
 
 [apply]
 	# Detect whitespace errors when applying a patch
@@ -11,8 +11,7 @@
 
 [core]
 	excludesfile = ~/.adamaltmejd/gitignore_global
-
-	editor = vi
+	editor = "subl -n -w"
 
 	# Treat spaces before tabs and all kinds of trailing whitespace as an error
 	# [default] trailing-space: looks for spaces at the end of a line
@@ -50,10 +49,10 @@
 
 [commit]
 	# https://help.github.com/articles/signing-commits-using-gpg/
-	# gpgsign = true
+	gpgsign = true
 
 [gpg]
-	program = /usr/local/bin/gpg
+	program = /usr/local/bin/gpg2
 
 [diff]
 	# Detect copies as well as renames
@@ -82,5 +81,6 @@
 
 [filter "lfs"]
 	required = true
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process

@@ -2,8 +2,9 @@
 
 # Update all stuff that I use
 update_script() {
-    echo "Updating OSX"
-    sudo softwareupdate -i -a
+    # Removed because annoying to sudo every time
+    # echo "Updating OSX"
+    # sudo softwareupdate -i -a
 
     echo "Updating brew"
     brew update && brew upgrade --cleanup
@@ -27,7 +28,7 @@ update_script() {
     pip2 install --upgrade pip
 
     echo "Updating LaTeX"
-    tlmgr update --self --all
+    sudo tlmgr update --self --all
 
     echo "Updating Atom"
     apm upgrade --no-confirm
@@ -40,6 +41,26 @@ update_script() {
 
     echo "update_script finished!"
 }
+
+# Pandoc pdf build
+# --template=cv.template \
+# --variable=vc-git \
+# --csl=${3:-"~/.adamaltmejd/pandoc/test.csl"} \
+#
+#--bibliography=${2:-"$HOME/Dropbox/Reading/Library/library.bib"} \
+#--csl=${3:-"$HOME/Dropbox/Sync/dotfiles/.adamaltmejd/pandoc/chicago-author-date-adam.csl"} \
+function pandoc-pdf() {
+    pandoc \
+        --from markdown+yaml_metadata_block+header_attributes-blank_before_header \
+        --to latex \
+        --latex-engine=pdflatex \
+        --filter pandoc-citeproc \
+        --smart \
+        --standalone \
+        --output "${1%.md}.pdf" \
+        $1
+}
+
 
 # # Simple calculator
 # function calc() {

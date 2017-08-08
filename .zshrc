@@ -27,5 +27,8 @@ HELPDIR=/usr/local/share/zsh/help
 source ~/.adamaltmejd/aliases
 source ~/.adamaltmejd/functions
 
+# Disable ! history
+# set -K
+
 #archey: display apple logo and computer stats
 archey

@@ -29,3 +29,50 @@ atom-text-editor::shadow .cursor {
 //   opacity: 0;
 //   width: 0;
 // }
+
+// My Code
+// MathJax is too large (set to 120% default)
+.math span {
+  font-size: 100% !important;
+}
+
+
+/*
+ * markdown-preview-enhanced custom style
+ */
+.markdown-preview-enhanced.markdown-preview-enhanced {
+  // please write your custom style here
+  // eg:
+  //  color: blue;          // change font color
+  font-size: 12px;      // change font size
+  h1 { font-size: 2em; }
+  h2 { font-size: 1.4em; font-weight: 400; }
+
+
+  // custom pdf output style
+  @media print {
+
+  }
+
+  // custom prince pdf export style
+  &.prince {
+
+  }
+
+  // custom phantomjs png/jpeg export style
+  &.phantomjs-image {
+
+  }
+
+  //custom phantomjs pdf export style
+  &.phantomjs-pdf {
+
+  }
+
+  // custom presentation style
+  .preview-slides .slide,
+  &[data-presentation-mode] {
+    // eg
+    // background-color: #000;
+  }
+}
