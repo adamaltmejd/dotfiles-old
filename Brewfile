@@ -1,57 +1,47 @@
-tap 'homebrew/science'
-tap 'caskroom/cask'
-#tap 'caskroom/versions'
-cask_args appdir: '/Applications'
+tap "homebrew/science"
+cask_args appdir: "/Applications"
 
 # Install useful stuff
-brew 'ack'
-#brew 'coreutils'
-brew 'gcc'
-brew 'pkg-config'
-brew 'openssl'
-brew 'git'
-brew 'zsh'
-brew 'wget'
-brew 'python'
-brew 'python3'
-brew 'postgresql'
-brew 'rbenv'
-brew 'node'
-brew 'wine'
-brew 'libsass'
-brew 'r'
-brew 'libsvm'
-brew 'archey'
-brew 'pandoc'
-brew 'pandoc-citeproc'
-brew 'tree'
-brew 'tidy-html5'
-brew 'gnupg'
-brew 'gpg-agent'
-brew 'pinentry-mac'
+brew "gcc"
+brew "cmake"
+brew "llvm"
+brew "openblas"
+brew "pkg-config"
+brew "git"
+brew "zsh"
+brew "python3"
+brew "rbenv"
+brew "node"
+brew "yarn"
+brew "r", args: ["with-java", "with-openblas"]
+brew "pandoc"
+brew "pandoc-citeproc"
+brew "gnupg"
+brew "gpg-agent"
+brew "pinentry-mac"
 
-cask 'dropbox'
-cask 'alfred'
-cask 'google-chrome'
-cask 'spotify'
-cask '1password'
-cask 'things'
-cask 'flux'
-cask 'github-desktop'
-cask 'atom'
-cask 'sublime-text3'
-cask 'the-unarchiver'
-cask 'skype'
-cask 'evernote'
-cask 'iterm2'
-cask 'hazel'
-cask 'little-snitch'
-cask 'mactex'
-cask 'transmission'
-cask 'vlc'
-cask 'steam'
-cask 'xquartz'
-
-brew 'mas' # needs xquartz
-mas 'twitter', id: 409789998
-mas 'Day One', id: 1055511498
+cask "java"
+cask "alfred"
+cask "google-chrome"
+cask "firefox"
+cask "the-unarchiver"
+cask "dropbox"
+cask "calibre"
+cask "spotify"
+cask "1password"
+cask "things"
+cask "flux"
+cask "github-desktop"
+cask "sublime-text-dev"
+cask "visual-studio-code-insiders"
+cask "rstudio"
+cask "skype"
+cask "evernote"
+cask "iterm2-beta"
+cask "anki"
+cask "slack"
+cask "hazel"
+cask "mactex"
+cask "transmission"
+cask "vlc"
+cask "xquartz"

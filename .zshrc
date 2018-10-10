@@ -11,7 +11,8 @@ DISABLE_UPDATE_PROMPT=true
 # DISABLE_AUTO_UPDATE="true"
 ENABLE_CORRECTION="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
-plugins=(git history-substring-search osx brew sublime zsh-syntax-highlighting command-not-found colored-man-pages colorize)
+plugins=(git history-substring-search osx brew sublime zsh-syntax-highlighting command-not-found colorize)
+# colored-man-pages not working
 # Init oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
@@ -31,4 +32,5 @@ source ~/.adamaltmejd/functions
 # set -K
 
 #archey: display apple logo and computer stats
-archey
+# -o for offline with no ip check
+# archey -o

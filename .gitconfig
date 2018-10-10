@@ -11,7 +11,7 @@
 
 [core]
 	excludesfile = ~/.adamaltmejd/gitignore_global
-	editor = "subl -n -w"
+	editor = "code --wait"
 
 	# Treat spaces before tabs and all kinds of trailing whitespace as an error
 	# [default] trailing-space: looks for spaces at the end of a line
@@ -36,31 +36,42 @@
 	local = yellow
 	remote = green
 
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
+
 [color "diff"]
 	meta = yellow bold
 	frag = magenta bold # line info
 	old = red # deletions
 	new = green # additions
 
-[color "status"]
-	added = yellow
-	changed = green
-	untracked = cyan
-
 [commit]
 	# https://help.github.com/articles/signing-commits-using-gpg/
 	gpgsign = true
 
 [gpg]
-	program = /usr/local/bin/gpg2
+	program = /usr/local/bin/gpg
+
+[credential]
+	helper = osxkeychain
 
 [diff]
-	# Detect copies as well as renames
-	renames = copies
+    tool = vscode
+
+[difftool "vscode"]
+    cmd = code --wait --diff $LOCAL $REMOTE
 
 [diff "bin"]
 	# Use `hexdump` to diff binary files
 	textconv = hexdump -v -C
+
+[merge]
+    tool = vscode
+
+[mergetool "vscode"]
+    cmd = code --wait $MERGED
 
 [help]
 	# Automatically correct and execute mistyped commands
@@ -71,10 +82,6 @@
 	log = true
 
 [push]
-	# Use the Git 1.x.x default to avoid errors on machines with old Git
-	# installations. To use `simple` instead, add this to your `~/.extra` file:
-	# `git config --global push.default simple`. See http://git.io/mMah-w.
-	#default = matching
 	default = simple
 	# Make `git push` push relevant annotated tags when pushing branches out.
 	followTags = true

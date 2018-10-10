@@ -1,5 +1,16 @@
 #!/usr/bin/env bash
 
+# Access torrents remotely
+alias torrents-web="open 'http://localhost:9091' && ssh -L 9091:localhost:9091 pi.r -N"
+alias torrents="ssh -L 58846:localhost:58846 pi.r -N"
+
+# Special R console rice
+alias r="rice"
+alias R="R --silent --no-save"
+
+# Stata
+alias Stata="/Applications/Stata/StataSE.app/Contents/MacOS/StataSE"
+
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
 alias ...="cd ../.."

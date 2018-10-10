@@ -2,20 +2,21 @@
 
 # Update all stuff that I use
 update_script() {
-    # Removed because annoying to sudo every time
-    # echo "Updating OSX"
-    # sudo softwareupdate -i -a
+	# Update Latex first since it requires sudo
+	echo "Updating LaTeX"
+	sudo tlmgr update --self --all
 
     echo "Updating brew"
-    brew update && brew upgrade --cleanup
+    brew update && brew upgrade
+    brew cask upgrade
+    brew cleanup
 
     echo "Updating NPM"
-    #update npm itself (node is updated through brew)
-    # npm install -g npm@latest
-    #npm update without updating npm itself
-    # npm -g list --depth 0 | grep -v "^/" | cut -f2 -d" " | cut -f1 -d@ | grep -v "^npm$" | xargs npm -g update
     npm install -g npm@latest
-    npm update -g
+    for package in $(npm -g outdated --parseable --depth=0 | cut -d: -f2)
+    do
+        npm -g install "$package"
+    done
 
     # Rubygems (ruby and rbenv are updated through brew)
     echo "Updating ruby gems"
@@ -23,21 +24,24 @@ update_script() {
     gem update
 
     # Python
-    echo "Updating pip and modules"
-    pip3 install --upgrade pip
-    pip2 install --upgrade pip
+    #echo "Updating pip and modules"
+    #pip3 install --upgrade pip
+    #pip2 install --upgrade pip
 
-    echo "Updating LaTeX"
-    sudo tlmgr update --self --all
-
-    echo "Updating Atom"
-    apm upgrade --no-confirm
+    # echo "Updating Atom"
+    # apm upgrade --no-confirm
 
     # echo "Updating Julia"
     # julia --eval "Pkg.update()"
 
     echo "Updating R"
-    Rscript -e "update.packages(ask=FALSE, checkBuilt=TRUE)"
+    # If errors occur, follow install script here:
+    # http://luisspuerto.net/2018/01/install-r-100-homebrew-edition-with-openblas-openmp-my-version/
+    Rscript -e "update.packages(.libPaths()[1], ask=FALSE, checkBuilt=TRUE)"
+
+    cp -f ~/.R/Makevars-data-table ~/.R/Makevars
+    Rscript -e 'remove.packages("data.table"); install.packages("data.table", type = "source", repos = "http://Rdatatable.github.io/data.table")'
+    cp -f ~/.R/Makevars-default ~/.R/Makevars
 
     echo "update_script finished!"
 }
@@ -61,6 +65,19 @@ function pandoc-pdf() {
         $1
 }
 
+function pi() {
+    # Connect to pi.local if its available, otherwise to pi.remote
+    if ping -c1 -W3 pi.local >/dev/null 2>&1
+    then
+        ssh pi.l
+    else
+        ssh pi.r
+    fi
+}
+
+function send_torrent_to_pi() {
+	scp "${1}" deluge@pi.r:/media/data/torrents/drop-folder/
+}
 
 # # Simple calculator
 # function calc() {

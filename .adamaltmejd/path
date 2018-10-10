@@ -3,8 +3,14 @@
 # Homebrew
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/X11/bin:/Library/TeX/texbin"
 
+# LLVM (can cause problems?)
+export PATH="/usr/local/opt/llvm/bin:$PATH"
+
 # Matlab and mlint (not using anymore)
 # export PATH="/Applications/MATLAB_R2014b.app/bin:/Applications/MATLAB_R2014b.app/bin/maci64:$PATH"
+
+# Stata
+export PATH="/Applications/Stata/StataSE.app/Contents/MacOS:$PATH"
 
 # MANUAL
 export MANPATH="/usr/local/man:$MANPATH"
@@ -14,5 +20,5 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # CDPATH
 # Add things to make it easy to cd to
-export CDPATH=~
-export CDPATH=$CDPATH:~/Dropbox/Research
+export CDPATH=.
+export CDPATH=$CDPATH:~:~/Dropbox/Research

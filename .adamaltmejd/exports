@@ -1,10 +1,10 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env sh
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vi'
 else
-  export EDITOR='subl'
+  export EDITOR='code'
 fi
 
 # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
@@ -18,7 +18,10 @@ export LC_ALL='en_US.UTF-8';
 export LESS_TERMCAP_md="${yellow}";
 
 # Don’t clear the screen after quitting a manual page.
-export MANPAGER='less -X';
+# export MANPAGER='less -X';
+
+# R user library
+export R_LIBS_USER=$HOME/.R/packages
 
 # For GPG to work with Git
 # https://stackoverflow.com/questions/39494631/gpg-failed-to-sign-the-data-fatal-failed-to-write-commit-object-git-2-10-0

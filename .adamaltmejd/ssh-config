@@ -1,0 +1,14 @@
+Host *
+    UseKeychain yes
+
+Host pi.l
+    Hostname pi.local
+    AddressFamily inet
+
+Host pi.r
+    Hostname pi.adamaltmejd.se
+
+Host pi.*
+    User pi
+    IdentityFile ~/.ssh/id_pi
+    Port 8472

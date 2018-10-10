@@ -18,10 +18,17 @@ options(showWarnCalls=T, showErrorCalls=T)
 # Install packages in user library
 .libPaths("~/.R/packages")
 
+# Set timezone manually, for some reason using ENV variable throws errors
+Sys.setenv(TZ="Europe/Stockholm")
+
 options(stringsAsFactors=FALSE)
 options(max.print=100)
-#try(options(width=Sys.getenv("COLUMNS")), silent = TRUE) # dynamic width
-options(width = 80)
+
+tryCatch(
+    options(width = Sys.getenv("COLUMNS")),
+    error = function(e) options(width = 80)
+    #finally = print("Hello")
+)
 
 # Don't load TK
 options(menu.graphics=FALSE)
@@ -36,6 +43,8 @@ q <- function(save="no", ...) {
 }
 
 # Enables the colorized output from R (provided by the colorout package) on appropriate consoles.
+# Needs to be downloaded manually from here:
+# https://github.com/jalvesaq/colorout
 if(Sys.getenv("TERM") %in% c("xterm-256color", "screen")) {
     suppressMessages(require("colorout"))
 }
@@ -75,3 +84,17 @@ utils::rc.settings(ipck=TRUE)
 }
 # Update packages on startup
 # update.packages(ask=FALSE, checkBuilt=TRUE)
+
+# Rice is a better R console (https://github.com/randy3k/Rice)
+# options(
+#     rice.color_scheme = "native",
+#     rice.editing_mode = "vi",
+#     rice.auto_indentation = FALSE,
+#     rice.tab_size = 4,
+#     rice.complete_while_typing = TRUE,
+#     rice.auto_width = TRUE,
+#     rice.prompt = "\033[0;34mr$>\033[0m ",
+#     rice.shell_prompt = "\033[0;31m#!>\033[0m ",
+#     rice.browse_prompt = "\033[0;33mBrowse[{}]>\033[0m ",
+#     rice.suppress_reticulate_message = FALSE
+# )

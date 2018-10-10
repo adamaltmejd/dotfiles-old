@@ -20,7 +20,6 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     brew upgrade --all --cleanup
 
     # Run Homebrew through Brewfile
-    brew tap Homebrew/bundle
     brew bundle
 
     # Remove outdated versions from the cellar.
@@ -61,22 +60,6 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     done
     unset src dst
 
-    # We don't want the whole .atom folder in Dropbox so just symlink relevant files instead
-    if [ ! -d ~/.atom/ ]; then; mkdir ~/.atom; fi
-    for src in ~/.adamaltmejd/atom/*; do
-        dst="$HOME/.atom/$(basename "$src")"
-
-        # If file exists move it to backup
-        if [[ -f "$dst" || -d "$dst" || -L "$dst" ]]; then
-            if [ ! -d ~/dotfiles_backup/ ]; then; mkdir ~/dotfiles_backup; fi
-            mv "$dst" ~/dotfiles_backup
-        fi
-
-        # Create symbolic link
-        ln -s "$src" "$dst"
-    done
-    unset src dst
-
     # Symlink gpg conf files
     if [ ! -d ~/.gnupg/ ]; then; mkdir ~/.gnupg; fi
     for src in "gpg.conf" "gpg-agent.conf"; do
@@ -87,17 +70,6 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
         fi
         ln -s "$src" "$dst"
     done
-
-    # Symlink the music and pictures folders
-    sudo mv ~/Music ~/Music-old
-    sudo mv ~/Pictures ~/Pictures-old
-    sudo mv ~/Movies ~/Movies-old
-    ln -s ~/Dropbox/Music ~/Music
-    ln -s ~/Dropbox/Pictures ~/Pictures
-    ln -s ~/Dropbox/Movies ~/Movies
-
-    mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 3/Packages
-    ln -s ~/Dropbox/Sync/sublime-text3/User ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
 fi
 
 echo 'Ta da!'
