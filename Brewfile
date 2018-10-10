@@ -1,4 +1,3 @@
-tap "homebrew/science"
 cask_args appdir: "/Applications"
 
 # Install useful stuff
@@ -6,6 +5,7 @@ brew "gcc"
 brew "cmake"
 brew "llvm"
 brew "openblas"
+cask "java"
 brew "pkg-config"
 brew "git"
 brew "zsh"
@@ -17,10 +17,9 @@ brew "r", args: ["with-java", "with-openblas"]
 brew "pandoc"
 brew "pandoc-citeproc"
 brew "gnupg"
-brew "gpg-agent"
 brew "pinentry-mac"
 
-cask "java"
+
 cask "alfred"
 cask "google-chrome"
 cask "firefox"
