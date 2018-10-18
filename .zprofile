@@ -1,5 +1,8 @@
 # `.zprofile' is similar to `.zlogin', except that it is sourced before `.zshrc'.
-# `.zprofile' is meant as an alternative to `.zlogin' for ksh fans; the two
-# are not intended to be used together.
 
-# ==> Don't use!
+source ~/.adamaltmejd/exports
+source ~/.adamaltmejd/exports.local
+source ~/.adamaltmejd/path
+
+# Load rbenv
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi

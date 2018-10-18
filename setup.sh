@@ -36,12 +36,6 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     source .adamaltmejd/macos
 fi
 
-echo "Install oh-my-zsh? (Y/N)"
-read -k 1 REPLY; echo ''
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-fi
-
 echo "Create symlinks (Y/N)"
 read -k 1 REPLY; echo ''
 if [[ $REPLY =~ ^[Yy]$ ]]; then
@@ -61,7 +55,10 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     unset src dst
 
     # Symlink gpg conf files
-    if [ ! -d ~/.gnupg/ ]; then; mkdir ~/.gnupg; fi
+    if [ ! -d ~/.gnupg/ ]; then;
+        mkdir ~/.gnupg;
+        chmod 700 ~/.gnupg
+    fi
     for src in "gpg.conf" "gpg-agent.conf"; do
         src="$(pwd -P)/.adamaltmejd/$src"
         dst="$HOME/.gnupg/$(basename "$src")"
@@ -69,7 +66,25 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
             mv "$dst" "$dst-debug"
         fi
         ln -s "$src" "$dst"
+        chmod 600 ~/.gnupg/*
     done
+
+    # SSH config
+    if [ ! -d ~/.ssh/ ]; then; mkdir ~/.ssh; fi
+    echo "Include ~/.adamaltmejd/ssh-config" >> ~/.ssh/config
+
+    # Local R directory
+    if [ ! -d ~/.R/ ]; then; mkdir ~/.R; fi
+    if [ ! -d ~/.R/packages ]; then; mkdir ~/.R/packages; fi
+    cp ~/.adamaltmejd/R/Makevars-data-table ~/.R/Makevars-data-table
+fi
+
+echo "Set zsh as default shell? (Y/N)"
+read -k 1 REPLY; echo ''
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    # Set default shell to homebrew zsh
+    sudo sh -c "echo /usr/local/bin/zsh >> /etc/shells"
+    chsh -s /usr/local/bin/zsh
 fi
 
 echo 'Ta da!'

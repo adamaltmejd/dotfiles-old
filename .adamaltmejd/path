@@ -1,24 +1,56 @@
-#!/usr/bin/env zsh
+#########################
+# PATH
+
+# Default
+PATH="/usr/bin:/bin:/usr/sbin:/sbin"
+
+# Additions
+
+# X11
+PATH="/opt/X11/bin:$PATH"
 
 # Homebrew
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/X11/bin:/Library/TeX/texbin"
+PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 
-# LLVM (can cause problems?)
-export PATH="/usr/local/opt/llvm/bin:$PATH"
+# Gnuutils (can cause errors?)
+PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/opt/findutils/libexec/gnubin:$PATH"
 
-# Matlab and mlint (not using anymore)
-# export PATH="/Applications/MATLAB_R2014b.app/bin:/Applications/MATLAB_R2014b.app/bin/maci64:$PATH"
+# LLVM (can cause errors?)
+PATH="/usr/local/opt/llvm/bin:$PATH"
 
-# Stata
-export PATH="/Applications/Stata/StataSE.app/Contents/MacOS:$PATH"
+# Rbenv
+PATH="$HOME/.rbenv/bin:$PATH"
 
-# MANUAL
-export MANPATH="/usr/local/man:$MANPATH"
+# Latex
+PATH="/Library/TeX/texbin:$PATH"
 
-# Rbenv (https://github.com/sstephenson/rbenv) installed with Homebrew
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+# STATA
+PATH="/Applications/Stata/StataSE.app/Contents/MacOS:$PATH"
+
+export PATH
+
+#########################
+# MANPATH
+
+MANPATH="/usr/share/man"
+
+# Homebrew
+MANPATH="/usr/local/share/man:/usr/local/man:$MANPATH"
+
+# GNU-UTILS
+MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+MANPATH="/usr/local/opt/findutils/libexec/gnuman:$MANPATH"
+
+# Tex
+MANPATH="/Library/TeX/Distributions/.DefaultTeX/Contents/Man:$MANPATH"
+
+# X11
+MANPATH="/opt/X11/share/man:$MANPATH"
+
+export MANPATH
 
 # CDPATH
-# Add things to make it easy to cd to
-export CDPATH=.
-export CDPATH=$CDPATH:~:~/Dropbox/Research
+CDPATH=.:~
+CDPATH=$CDPATH:/Dropbox/Research
+
+export CDPATH

@@ -1,36 +1,15 @@
 # `.zshrc' is sourced in interactive shells. It should contain commands to set
 # up aliases, functions, options, key bindings, etc.
 
-# Seems like PATH is somehow overwritten, so we source env again
-source ~/.zshenv
+# THEME SETTINGS
+# THEME
+POWERLEVEL9K_MODE='nerdfont-complete'
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time)
 
-# ZSH config
-export ZSH=$HOME/.oh-my-zsh
-export ZSH_THEME="nanotech"
-DISABLE_UPDATE_PROMPT=true
-# DISABLE_AUTO_UPDATE="true"
-ENABLE_CORRECTION="true"
-DISABLE_UNTRACKED_FILES_DIRTY="true"
-plugins=(git history-substring-search osx brew sublime zsh-syntax-highlighting command-not-found colorize)
-# colored-man-pages not working
-# Init oh-my-zsh
-source $ZSH/oh-my-zsh.sh
+# Load antibody (static, faster)
+source ~/.zsh_plugins.sh
 
-# Iterm2 Shell Integration
-source ~/.iterm2_shell_integration.zsh
-
-# Init zsh online help
-unalias run-help
-autoload run-help
-HELPDIR=/usr/local/share/zsh/help
-
-# Load my own settings (overwrites oh-my-zsh if necessary)
 source ~/.adamaltmejd/aliases
 source ~/.adamaltmejd/functions
-
-# Disable ! history
-# set -K
-
-#archey: display apple logo and computer stats
-# -o for offline with no ip check
-# archey -o

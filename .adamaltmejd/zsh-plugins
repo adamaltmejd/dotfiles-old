@@ -1,0 +1,12 @@
+mafredri/zsh-async
+
+# Z - better cd (with learning)
+rupa/z
+
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-completions
+zsh-users/zsh-history-substring-search
+zsh-users/zsh-syntax-highlighting
+
+# Prompt / Theme
+bhilburn/powerlevel9k branch:next

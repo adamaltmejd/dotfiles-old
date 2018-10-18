@@ -3,6 +3,7 @@
 # important environment variables. `.zshenv' should not contain commands that
 # produce output or assume the shell is attached to a tty.
 
-source ~/.adamaltmejd/exports
-source ~/.adamaltmejd/exports.local
-source ~/.adamaltmejd/path
+# Only for NON-interactive environmental variables!
+
+# Problem with using this to set the path is that /etc/profile is loaded after
+# Better to use .zprofile
