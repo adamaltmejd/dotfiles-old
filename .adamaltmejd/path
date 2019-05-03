@@ -19,7 +19,8 @@ PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 PATH="/usr/local/opt/llvm/bin:$PATH"
 
 # Python3 Defaults
-PATH="/usr/local/opt/python/libexec/bin:$PATH"
+# causes errors with pip3 upgrade
+#PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
 # Perl
 PATH="$HOME/perl5/bin:$PATH"
