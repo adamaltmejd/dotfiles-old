@@ -5,50 +5,59 @@ antibody_update() {
     antibody update
 }
 
+# Echo in Stderr
+echoerr() { printf "%s\n" "$*" >&2; }
+
 # Update all stuff that I use
-update_script() {
+alias update_script="rm -f update_script.log; update_script_echo > ~/.adamaltmejd/update_script.log;"
+
+update_script_echo() {
+    echoerr "Starting system update..."
     # Ask for the administrator password upfront
     sudo -v
     # Keep-alive: update existing `sudo` time stamp until finish
     while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
     # Mac App store update
-    sudo softwareupdate -i -a
+    sudo softwareupdate -i -a 2>&1
 
     # Update zsh shell
-    antibody_update
+    antibody_update 2>&1
 
-    echo "Updating brew"
+    echoerr "Updating brew"
     brew update && brew upgrade
     brew cask upgrade
     brew cleanup
 
-    echo "Updating NPM"
-    npm install -g npm@latest
+    echoerr "Updating NPM"
+    npm install -g npm@latest 2>&1
     for package in $(npm -g outdated --parseable --depth=0 | cut -d: -f2)
     do
-        npm -g install "$package"
+        npm -g install "$package" 2>&1
     done
 
     # Rubygems (ruby and rbenv are updated through brew)
-    echo "Updating ruby gems"
+    echoerr "Updating ruby gems"
     gem update --system
     gem update
 
-    echo "Updating R"
+    echoerr "Updating R"
     # If errors occur, follow install script here:
     # http://luisspuerto.net/2018/01/install-r-100-homebrew-edition-with-openblas-openmp-my-version/
-    Rscript -e "update.packages(.libPaths()[1], ask=FALSE, checkBuilt=TRUE)"
+    Rscript --vanilla -e "update.packages(.libPaths()[1], ask=FALSE, checkBuilt=TRUE, repos = 'https://cran.rstudio.com/')" 2>&1
 
     cp -f ~/.R/Makevars-data-table ~/.R/Makevars
-    Rscript -e 'remove.packages("data.table"); install.packages("data.table", type = "source", repos = "http://Rdatatable.github.io/data.table")'
+    Rscript --vanilla -e 'remove.packages("data.table"); install.packages("data.table", type = "source", repos = "http://Rdatatable.github.io/data.table")' 2>&1
     rm ~/.R/Makevars
 
     # Update Latex
-	echo "Updating LaTeX"
+	echoerr "Updating LaTeX"
 	sudo tlmgr update --self --all
 
-    echo "update_script finished!"
+    echoerr "update_script finished!"
+
+    # Reload terminal
+    reload
 }
 
 # Pandoc pdf build
