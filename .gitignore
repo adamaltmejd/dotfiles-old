@@ -1,5 +1,8 @@
 .DS_Store
 
+# Update script log file
+.adamaltmejd/update_script.log
+
 # Local files (with possibly sensitive info)
 *.local
 
