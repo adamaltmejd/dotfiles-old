@@ -1,15 +1,15 @@
-#################
-# Vi/Vim bindings
+# Default to Vim bindings, regardless of editor string
 bindkey -e
-bindkey "^A"   beginning-of-line
-bindkey "^B"   backward-char
-bindkey "^E"   end-of-line
-bindkey "^F"   forward-char
-bindkey "^D"   delete-char
-bindkey "^K"   kill-whole-line
-bindkey "^N"   down-line-or-search
-bindkey "^P"   up-line-or-search
-bindkey "^R"   history-incremental-search-backward
+
+bindkey "^A"   beginning-of-line                    # ctrl-a
+bindkey "^B"   backward-char                        # ctrl-b
+bindkey "^E"   end-of-line                          # ctrl-e
+bindkey "^F"   forward-char                         # ctrl-f
+bindkey "^D"   delete-char                          # ctrl-d
+bindkey "^K"   kill-whole-line                      # ctrl-k
+bindkey "^N"   down-line-or-search                  # ctrl-n
+bindkey "^P"   up-line-or-search                    # ctrl-p
+bindkey "^R"   history-incremental-search-backward  # ctrl-r
 
 # History substring
 bindkey '^[[A' history-substring-search-up
