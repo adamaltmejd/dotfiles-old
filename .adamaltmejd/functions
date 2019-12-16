@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/local/bin/zsh
 
 antibody_update() {
     antibody bundle < ~/.adamaltmejd/zsh-plugins > ~/.zsh_plugins.sh
@@ -6,28 +6,37 @@ antibody_update() {
 }
 
 # Echo in Stderr
-echoerr() { printf "%s\n" "$*" >&2; }
+echoerr() { printf "%s\n" "$*" >&2 }
 
 # Update all stuff that I use
-alias update_script="rm -f update_script.log; update_script_echo > ~/.adamaltmejd/update_script.log;"
+alias update_script="update_script_echo > ~/.adamaltmejd/update_script.log"
 
 update_script_echo() {
-    echoerr "Starting system update..."
-    # Ask for the administrator password upfront
-    sudo -v
-    # Keep-alive: update existing `sudo` time stamp until finish
-    while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+    # echoerr "Starting system update..."
+    # # Ask for the administrator password upfront
+    # sudo -v
+    # # Keep-alive: update existing `sudo` time stamp until finish
+    # while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-    # Mac App store update
-    sudo softwareupdate -i -a 2>&1
-
-    # Update zsh shell
-    antibody_update 2>&1
+    # # Mac App store update
+    # # (don't update automatically)
+    # sudo softwareupdate -i -a 2>&1
 
     echoerr "Updating brew"
     brew update && brew upgrade
     brew cask upgrade
     brew cleanup
+
+    # Update zsh shell
+    echoerr "Updating ZSH"
+    antibody_update 2>&1
+
+    # Reload to use latest version for the rest of the update
+    source ~/.zshrc
+
+    echoerr "Updating core Python packages"
+    export PIP_REQUIRE_VIRTUALENV=false
+    python3 -m pip install --upgrade pip setuptools wheel virtualenv virtualenvwrapper
 
     echoerr "Updating NPM"
     npm install -g npm@latest 2>&1
@@ -38,6 +47,7 @@ update_script_echo() {
 
     # Rubygems (ruby and rbenv are updated through brew)
     echoerr "Updating ruby gems"
+    eval "$(rbenv init -)"
     gem update --system
     gem update
 
@@ -57,7 +67,7 @@ update_script_echo() {
     echoerr "update_script finished!"
 
     # Reload terminal
-    reload
+    source ~/.zshrc
 }
 
 # Pandoc pdf build
@@ -165,4 +175,9 @@ function o() {
 # small enough for one screen.
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
+}
+
+# Gpip to install python packages globally
+function gpip3() {
+    PIP_REQUIRE_VIRTUALENV="0" pip3 "$@"
 }

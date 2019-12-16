@@ -1,11 +1,23 @@
+#!/usr/local/bin/zsh
 # `.zprofile' is similar to `.zlogin', except that it is sourced before `.zshrc'.
 
 source ~/.adamaltmejd/exports
 source ~/.adamaltmejd/exports.local
 source ~/.adamaltmejd/path
 
-# Load rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+# Lazy-Load rbenv
+rbenv() {
+  eval "$(command rbenv init -)"
+  rbenv "$@"
+}
 
-# Load perl
-eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
+# Lazy-load perl
+perl() {
+    eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
+    perl "$@"
+}
+
+#####
+# GPG for SSH
+gpgconf --launch gpg-agent
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)

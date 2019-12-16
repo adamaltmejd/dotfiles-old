@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 source ~/.adamaltmejd/exports
 source ~/.adamaltmejd/exports.local
 source ~/.adamaltmejd/path
