@@ -1,0 +1,147 @@
+% !TeX program = xelatex
+% !BIB program = biber
+% !TeX encoding = UTF-8 Unicode
+\documentclass[%
+  article,oneside,openany,english,
+  $if(papersize)$$papersize$paper$else$a4paper$endif$,%
+  $if(fontsize)$$fontsize$$else$12pt$endif$$if(classoption)$,$for(classoption)$$classoption$$sep$,$endfor$$endif$%
+]{memoir}
+
+%%%%%%%%%%%%%
+% PAGE LAYOUT
+\settypeblocksize{279.4mm}{215.9mm}{*}
+\setulmarginsandblock{3cm}{3cm}{*}
+\setlrmarginsandblock{3.9cm}{2cm}{*}
+
+\setlrmarginsandblock{25mm}{25mm}{*} % left right margins
+\setulmarginsandblock{25mm}{25mm}{*} % top bottom margins
+\setheadfoot{\onelineskip}{2\onelineskip} % {headheight}{footskip}
+\setheaderspaces{15mm}{*}{*} % {headdrop}{headsep}{ratio}
+\setlength{\parindent}{2em} % indentation for new paragraphs
+\setSingleSpace{1.1} % Line spacing
+
+% PAGE Breaking
+% Dealing with widows and orphans
+\clubpenalty=9996
+\widowpenalty=9999
+\brokenpenalty=4991
+\predisplaypenalty=10000
+\postdisplaypenalty=1549
+\displaywidowpenalty=1602
+
+\flushbottom % to stretch vboxes to cover full page (won't always work with figures)
+% Alternatively:
+%\raggedbottom % allow textheight to vary somewhat between pages
+%\feetatbottom % to ensure footnotes are still at bottom with \raggedbottom
+
+\checkandfixthelayout[lines] % use fixed with raggedbottom
+
+%%%%%%%%%%%%%%%%%
+% PACKAGE LOADING
+
+\usepackage{polyglossia}
+\usepackage{csquotes} % Better looking quotes
+\setmainlanguage[variant=american]{english}
+
+\usepackage{fontspec}
+\usepackage[math-style=TeX]{unicode-math}
+\setmainfont{Times}
+% \setmainfont{XITS}
+% \setmathfont{XITS Math}
+
+% Other packages
+\usepackage{amsmath}
+
+% Chicago-style bib
+$if(bibliography)$
+\usepackage[
+  authordate,backend=biber,
+  maxnames=3,minnames=1,
+  maxbibnames=5,minbibnames=3,
+  doi=only,isbn=false,eprint=false,
+  numbermonth=false,
+  bookpages=false
+]{biblatex-chicago}
+\addbibresource{$bibliography$}
+$endif$
+
+
+% Hyperref (always at end)
+\usepackage{hyperref}
+\hypersetup{
+  unicode=true,
+  hidelinks,
+  %pdfborder={0 0 0},
+  %colorlinks=true,
+  pdftitle={$title$}
+  pdfauthor={$for(author)$$if(author.name)$$author.name$$else$$author$$endif$$sep$, $endfor$},$if(keywords)$pdfkeywords={$for(keywords)$$keywords$$sep$; $endfor$},$endif$
+  bookmarksnumbered=true,
+  bookmarksopen=true,
+  breaklinks=true
+}
+
+%%%%%%%%%%%%%%%%%%%%
+% TITLING AND STYLES
+
+$if(title)$
+\title{$title$$if(subtitle)$ \\ $subtitle$$endif$}
+$endif$
+$if(author)$
+\author{$for(author)$$if(author.name)$$author.name$$if(author.thanks)$\thanks{$author.thanks$}$endif$$else$$author$$endif$$sep$ \and $endfor$}
+$endif$
+$if(date)$\date{$date$}$endif$
+
+$for(header-includes)$
+$header-includes$
+$endfor$
+
+%%%%%%%%%%%%%%%%
+% BEGIN DOCUMENT
+
+\begin{document}
+
+$if(title)$
+\maketitle
+\thispagestyle{empty}
+$endif$
+
+$if(abstract)$
+\begin{abstract}
+$abstract$
+\end{abstract}
+$endif$
+
+$for(include-before)$
+$include-before$
+$endfor$
+
+$if(toc)$
+{
+$if(colorlinks)$
+\hypersetup{linkcolor=$if(toccolor)$$toccolor$$else$black$endif$}
+$endif$
+\setcounter{tocdepth}{$toc-depth$}
+\tableofcontents
+}
+$endif$
+
+$if(lot)$
+\listoftables
+$endif$
+
+$if(lof)$
+\listoffigures
+$endif$
+
+$body$
+
+$if(bibliography)$
+\printbibliography
+$endif$
+
+$for(include-after)$
+$include-after$
+$endfor$
+
+\end{document}
+
