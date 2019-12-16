@@ -1,7 +1,7 @@
 Host *
     AddKeysToAgent yes
     UseKeychain yes
-    IdentityFile ~/.ssh/id_rsa
+    IdentityFile /dev/null
 
 Host pi.l
     Hostname pi.local
@@ -12,5 +12,33 @@ Host pi.r
 
 Host pi.*
     User pi
-    IdentityFile ~/.ssh/id_pi
     Port 8472
+
+# Using proxycommand to connect to the right server
+# https://askubuntu.com/questions/311447/how-do-i-ssh-to-machine-a-via-b-in-one-command/311454#311454
+
+Host sofi-broker
+    Hostname peter.sofi.su.se
+    User adam
+
+Host sofi.*
+    User adal7067
+    Port 22
+    ForwardAgent yes
+    ProxyCommand ssh sofi-broker nc %h %p
+
+Host sofi.katla
+    Hostname katla.sofi.su.se
+
+Host sofi.luke
+    Hostname luke.sofi.su.se
+
+Host sofi.lucifer
+    Hostname lucifer.sofi.su.se
+
+Host sofi.casa
+    Hostname casa.sofi.su.se
+
+Host sofi-local
+    Hostname casa.sofi.su.se
+    User adal7067
