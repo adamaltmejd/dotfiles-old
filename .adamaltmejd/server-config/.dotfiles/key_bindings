@@ -1,0 +1,16 @@
+#################
+# Vi/Vim bindings
+bindkey -e
+bindkey "^A"   beginning-of-line
+bindkey "^B"   backward-char
+bindkey "^E"   end-of-line
+bindkey "^F"   forward-char
+bindkey "^D"   delete-char
+bindkey "^K"   kill-whole-line
+bindkey "^N"   down-line-or-search
+bindkey "^P"   up-line-or-search
+bindkey "^R"   history-incremental-search-backward
+
+# History substring
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
