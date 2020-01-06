@@ -9,27 +9,27 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-source ~/.adamaltmejd/term-config
+source $HOME/.adamaltmejd/term-config
 
 # Antibody static loading
-source ~/.zsh_plugins.sh
+source $HOME/.zsh_plugins.sh
 # To load (after including more plugins), run:
-# antibody bundle < ~/.adamaltmejd/zsh-plugins > ~/.zsh_plugins.sh
+# antibody bundle < $HOME/.adamaltmejd/zsh-plugins > $HOME/.zsh_plugins.sh
 
 # Load completions
 autoload -Uz compinit
-if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+if [[ -n $HOME/.zcompdump(#qN.mh+24) ]]; then
   compinit
-  touch .zcompdump
+  touch $HOME/.zcompdump
 else
   compinit -C
 fi
 
 ######
 # Aliases and functions
-source ~/.adamaltmejd/aliases
-source ~/.adamaltmejd/functions
-source ~/.adamaltmejd/key_bindings
+source $HOME/.adamaltmejd/aliases
+source $HOME/.adamaltmejd/functions
+source $HOME/.adamaltmejd/key_bindings
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# To customize prompt, run `p10k configure` or edit $HOME/.p10k.zsh.
+[[ ! -f $HOME/.p10k.zsh ]] || source $HOME/.p10k.zsh
