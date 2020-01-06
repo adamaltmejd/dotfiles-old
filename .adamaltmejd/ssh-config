@@ -24,21 +24,19 @@ Host sofi-broker
 Host sofi.*
     User adal7067
     Port 22
+
+Host sofi.*.r
     ForwardAgent yes
     ProxyCommand ssh sofi-broker nc %h %p
 
-Host sofi.katla
+Host sofi.katla*
     Hostname katla.sofi.su.se
 
-Host sofi.luke
+Host sofi.luke*
     Hostname luke.sofi.su.se
 
-Host sofi.lucifer
+Host sofi.lucifer*
     Hostname lucifer.sofi.su.se
 
-Host sofi.casa
+Host sofi.casa*
     Hostname casa.sofi.su.se
-
-Host sofi-local
-    Hostname casa.sofi.su.se
-    User adal7067
