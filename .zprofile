@@ -17,6 +17,9 @@ perl() {
     perl "$@"
 }
 
+# Lazy-load virtualenvwrapper
+source /usr/local/bin/virtualenvwrapper_lazy.sh
+
 #####
 # GPG for SSH
 gpgconf --launch gpg-agent
