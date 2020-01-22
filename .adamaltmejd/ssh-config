@@ -1,7 +1,20 @@
+# Uses gpg keys for ssh, public key exported to ~/.ssh
+# see ssh-add -l for all available keys.
+# Requires IdentityFile to be specified for each host.
+
 Host *
+    ForwardAgent yes
     AddKeysToAgent yes
     UseKeychain yes
     IdentityFile /dev/null
+
+# Raspberry pi, local and remote connections
+
+Host pi.*
+    User pi
+    Port 8472
+    IdentityFile /Users/adal7067/.ssh/id_pi.pub
+    IdentitiesOnly yes
 
 Host pi.l
     Hostname pi.local
@@ -10,23 +23,22 @@ Host pi.l
 Host pi.r
     Hostname pi.adamaltmejd.se
 
-Host pi.*
-    User pi
-    Port 8472
-
-# Using proxycommand to connect to the right server
+# SOFI compute server
+# Connects through broker, using proxycommand
 # https://askubuntu.com/questions/311447/how-do-i-ssh-to-machine-a-via-b-in-one-command/311454#311454
 
 Host sofi-broker
     Hostname peter.sofi.su.se
     User adam
+    IdentityFile /Users/adal7067/.ssh/gpg_key.pub
 
 Host sofi.*
     User adal7067
     Port 22
+    IdentityFile /Users/adal7067/.ssh/gpg_key.pub
+    IdentitiesOnly yes
 
 Host sofi.*.r
-    ForwardAgent yes
     ProxyCommand ssh sofi-broker nc %h %p
 
 Host sofi.katla*
