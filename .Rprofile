@@ -104,7 +104,7 @@ options(radian.auto_indentation = TRUE)
 options(radian.tab_size = 4)
 
 # pop up completion while typing
-options(radian.complete_while_typing = FALSE)
+options(radian.complete_while_typing = TRUE)
 # timeout in seconds to cancel completion if it takes too long
 # set it to 0 to disable it
 options(radian.completion_timeout = 0.05)
@@ -112,18 +112,25 @@ options(radian.completion_timeout = 0.05)
 # automatically adjust R buffer size based on terminal width
 options(radian.auto_width = TRUE)
 
-# insert new line between prompts
-options(radian.insert_new_line = TRUE)
+# insert new line between prompts.
+options(radian.insert_new_line = FALSE)
 
 # when using history search (ctrl-r/ctrl-s in emacs mode), do not show duplicate results
-options(radian.history_search_no_duplicates = FALSE)
+options(radian.history_search_no_duplicates = TRUE)
 
 # custom prompt for different modes
-options(radian.prompt = "\033[0;34m>\033[0m ")
-options(radian.shell_prompt = "\033[0;31m#\033[0m ")
+options(radian.prompt = "\033[0;34mr$>\033[0m ")
+options(radian.shell_prompt = "\033[0;31m#!>\033[0m ")
 options(radian.browse_prompt = "\033[0;33mBrowse[{}]>\033[0m ")
 
-# supress the loading message for reticulate
+# show vi mode state when radian.editing_mode is `vi`
+options(radian.show_vi_mode_prompt = TRUE)
+options(radian.vi_mode_prompt = "\033[0;34m[{}]\033[0m ")
+
+# stderr color format
+options(radian.stderr_format = "\033[0;31m{}\033[0m")
+
+# suppress the loading message for reticulate
 options(radian.suppress_reticulate_message = FALSE)
 # enable reticulate prompt and trigger `~`
 options(radian.enable_reticulate_prompt = TRUE)
