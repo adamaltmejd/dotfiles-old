@@ -10,6 +10,11 @@ Host *
     PasswordAuthentication no
     IdentitiesOnly yes
 
+Host github.com
+    HostName github.com
+    IdentityFile /Users/adal7067/.ssh/gpg_key.pub
+    User git
+
 # Raspberry pi, local and remote connections
 
 Host pi.*
