@@ -1,12 +1,14 @@
 # Uses gpg keys for ssh, public key exported to ~/.ssh
 # see ssh-add -l for all available keys.
 # Requires IdentityFile to be specified for each host.
+# Only activate ForwardAgent on secure servers!
 
 Host *
-    ForwardAgent yes
+    ForwardAgent no
     AddKeysToAgent yes
     UseKeychain yes
-    IdentityFile /dev/null
+    PasswordAuthentication no
+    IdentitiesOnly yes
 
 # Raspberry pi, local and remote connections
 
@@ -14,7 +16,6 @@ Host pi.*
     User pi
     Port 8472
     IdentityFile /Users/adal7067/.ssh/id_pi.pub
-    IdentitiesOnly yes
 
 Host pi.l
     Hostname pi.local
@@ -33,22 +34,29 @@ Host sofi-broker
     IdentityFile /Users/adal7067/.ssh/gpg_key.pub
 
 Host sofi.*
-    User adal7067
     Port 22
     IdentityFile /Users/adal7067/.ssh/gpg_key.pub
-    IdentitiesOnly yes
+    ForwardAgent yes
 
 Host sofi.*.r
     ProxyCommand ssh sofi-broker nc %h %p
 
-Host sofi.katla*
+Host sofi.katla.*
+    User adam
     Hostname katla.sofi.su.se
 
-Host sofi.luke*
+Host sofi.katla_nas.*
+    User adal7067
+    Hostname katla.sofi.su.se
+
+Host sofi.luke.*
+    User adal7067
     Hostname luke.sofi.su.se
 
-Host sofi.lucifer*
+Host sofi.lucifer.*
+    User adal7067
     Hostname lucifer.sofi.su.se
 
-Host sofi.casa*
+Host sofi.casa.*
+    User adal7067
     Hostname casa.sofi.su.se
