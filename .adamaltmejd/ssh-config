@@ -4,7 +4,6 @@
 # Only activate ForwardAgent on secure servers!
 
 Host *
-    ForwardAgent no
     AddKeysToAgent yes
     UseKeychain yes
     PasswordAuthentication no
@@ -41,7 +40,6 @@ Host sofi-broker
 Host sofi.*
     Port 22
     IdentityFile /Users/adal7067/.ssh/gpg_key.pub
-    ForwardAgent yes
 
 Host sofi.*.r
     ProxyCommand ssh sofi-broker nc %h %p
@@ -49,6 +47,7 @@ Host sofi.*.r
 Host sofi.katla.*
     User adam
     Hostname katla.sofi.su.se
+    ForwardAgent yes
 
 Host sofi.katla_nas.*
     User adal7067
