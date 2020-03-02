@@ -37,6 +37,7 @@ update_script_echo() {
     echoerr "Updating core Python packages"
     export PIP_REQUIRE_VIRTUALENV=false
     python3 -m pip install --upgrade pip setuptools wheel virtualenv virtualenvwrapper
+    export PIP_REQUIRE_VIRTUALENV=true
 
     echoerr "Updating NPM"
     npm install -g npm@latest 2>&1
@@ -47,7 +48,7 @@ update_script_echo() {
 
     # Rubygems (ruby and rbenv are updated through brew)
     echoerr "Updating ruby gems"
-    eval "$(rbenv init -)"
+    eval "$(rbenv init -)" # Make sure rbenv is initialized (lazy loading ON)
     gem update --system
     gem update
 
