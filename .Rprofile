@@ -1,34 +1,17 @@
 # See help(startup) for documentation
-# Set default CRAN Mirror
-local({
-  r <- getOption("repos")
-  r["CRAN"] <- "https://cran.rstudio.com/"
-  options(repos = r)
-})
-
-# Editor
-# options(editor="subl")
-
-# Error handling
-# options(error=traceback)
-options(showWarnCalls = T, showErrorCalls = T)
-# options(warn=2) # halt on warnings
-# options(warning.expression=quote(recover())) # use recover on warnings
 
 # Install packages in user library
 .libPaths("~/.R/packages")
 
+# Editor
+options(editor="code")
+
 # Set timezone manually, for some reason using ENV variable throws errors
 Sys.setenv(TZ = "Europe/Stockholm")
 
+options(setWidthOnResize = TRUE) # Set width on resize
 options(stringsAsFactors = FALSE)
 options(max.print = 100)
-
-tryCatch(
-  options(width = Sys.getenv("COLUMNS")),
-  error = function(e) options(width = 80)
-  # finally = print("Hello")
-)
 
 # Don't load TK
 options(menu.graphics = FALSE)
@@ -49,88 +32,11 @@ if (Sys.getenv("TERM") %in% c("xterm-256color", "screen")) {
   suppressMessages(require("colorout"))
 }
 
-# Redefine print data frame to only print first 5 and last 5 rows of long datasets.
-print.data.frame <- function(df) {
-  if (nrow(df) > 10) {
-    base::print.data.frame(head(df, 5))
-    cat("----\n")
-    base::print.data.frame(tail(df, 5))
-  } else {
-    base::print.data.frame(df)
-  }
+# Automatically saves Rhistory even on --no-save.
+if (interactive()) {
+  invisible(
+    reg.finalizer(
+      .GlobalEnv,
+      eval(bquote(function(e) try(savehistory(file.path(.(getwd()), ".Rhistory"))))),
+      onexit = TRUE))
 }
-
-# This snippet allows you to tab-complete package names for use in "library()"
-# or "require()" calls. Credit for this one goes to @mikelove.
-utils::rc.settings(ipck = TRUE)
-
-# Code to autoload packages in interactive console
-# auto.loads <- c("dplyr", "ggplot2")
-# sshhh <- function(a.package){
-#   suppressWarnings(suppressPackageStartupMessages(
-#     library(a.package, character.only=TRUE)))
-# }
-# if(interactive()){
-#   invisible(sapply(auto.loads, sshhh))
-# }
-
-# .First() run at the start of every R session.
-.First <- function() {
-  # cat("\nSuccessfully loaded .Rprofile at", date(), "\n")
-}
-# .Last() run at the end of the session
-.Last <- function() {
-  # cat("\nGoodbye at ", date(), "\n")
-}
-
-# Radian options
-# see https://help.farbox.com/pygments.html
-# for a list of supported color schemes, default scheme is "native"
-options(radian.color_scheme = "native")
-
-# either  `"emacs"` (default) or `"vi"`.
-options(radian.editing_mode = "emacs")
-
-# indent continuation lines
-# turn this off if you want to copy code without the extra indentation;
-# but it leads to less elegent layout
-options(radian.indent_lines = TRUE)
-
-# auto match brackets and quotes
-options(radian.auto_match = TRUE)
-
-# auto indentation for new line and curly braces
-options(radian.auto_indentation = TRUE)
-options(radian.tab_size = 4)
-
-# pop up completion while typing
-options(radian.complete_while_typing = TRUE)
-# timeout in seconds to cancel completion if it takes too long
-# set it to 0 to disable it
-options(radian.completion_timeout = 0.05)
-
-# automatically adjust R buffer size based on terminal width
-options(radian.auto_width = TRUE)
-
-# insert new line between prompts.
-options(radian.insert_new_line = FALSE)
-
-# when using history search (ctrl-r/ctrl-s in emacs mode), do not show duplicate results
-options(radian.history_search_no_duplicates = TRUE)
-
-# custom prompt for different modes
-options(radian.prompt = "\033[0;34mr$>\033[0m ")
-options(radian.shell_prompt = "\033[0;31m#!>\033[0m ")
-options(radian.browse_prompt = "\033[0;33mBrowse[{}]>\033[0m ")
-
-# show vi mode state when radian.editing_mode is `vi`
-options(radian.show_vi_mode_prompt = TRUE)
-options(radian.vi_mode_prompt = "\033[0;34m[{}]\033[0m ")
-
-# stderr color format
-options(radian.stderr_format = "\033[0;31m{}\033[0m")
-
-# suppress the loading message for reticulate
-options(radian.suppress_reticulate_message = FALSE)
-# enable reticulate prompt and trigger `~`
-options(radian.enable_reticulate_prompt = TRUE)
