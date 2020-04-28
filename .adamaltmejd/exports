@@ -31,13 +31,6 @@ export PIP_REQUIRE_VIRTUALENV=true
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
 
 ###
-# R
-# R user library
-export R_LIBS_USER=$HOME/.R/packages
-# Ensure colorout is loaded also in Packrat directories
-export R_PACKRAT_EXTERNAL_PACKAGES="colorout"
-
-###
 # Ruby
 # To use Homebrew openssl with ruby
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"

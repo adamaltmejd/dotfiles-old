@@ -5,7 +5,7 @@ alias dl-web="open 'http://localhost:9091' && ssh -L 9091:localhost:9091 pi.r -N
 alias dl="ssh -L 58846:localhost:58846 pi.r -N"
 
 # R startup
-alias R="R --silent --no-save"
+alias R="R --silent --no-save --no-restore-data"
 # Special R console "radian" (former Rice)
 alias r="radian --quiet"
 

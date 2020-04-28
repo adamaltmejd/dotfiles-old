@@ -1,18 +1,9 @@
 .DS_Store
 
+.Rhistory
+
 # Update script log file
 .adamaltmejd/update_script.log
 
 # Local files (with possibly sensitive info)
 *.local
-
-# Atom folder
-.atom/.apm
-.atom/blob-store
-.atom/storage
-.atom/packages
-.atom/compile-cache
-.atom/dev
-.atom/.npm
-.atom/.node-gyp
-.atom/.gitignore
