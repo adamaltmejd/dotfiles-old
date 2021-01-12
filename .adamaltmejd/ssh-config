@@ -6,61 +6,76 @@
 Host *
     AddKeysToAgent yes
     UseKeychain yes
-    PasswordAuthentication no
+    PasswordAuthentication yes
     IdentitiesOnly yes
 
 Host github.com
     HostName github.com
-    IdentityFile /Users/adal7067/.ssh/gpg_key.pub
+    IdentityFile ~/.ssh/gpg_key.pub
     User git
 
-# Raspberry pi, local and remote connections
+# Sthlm server
 
-Host pi.*
+Host sthlm.*
     User pi
     Port 8472
-    IdentityFile /Users/adal7067/.ssh/id_pi.pub
+    IdentityFile ~/.ssh/id_pi
+    ForwardAgent yes
 
-Host pi.l
-    Hostname pi.local
+Host sthlm.l
+    HostName 192.168.0.2
     AddressFamily inet
 
-Host pi.r
-    Hostname pi.adamaltmejd.se
+Host sthlm.r
+    HostName sthlm.adamaltmejd.com
+
+# Breven (Raspberry Pi 4)
+Host breven.*
+    User pi
+    Port 8472
+    IdentityFile ~/.ssh/id_pi
+    ForwardAgent yes
+
+Host breven.l
+    HostName breven.local
+
+Host breven.r
+    HostName adamaltmejd.com
+
 
 # SOFI compute server
 # Connects through broker, using proxycommand
 # https://askubuntu.com/questions/311447/how-do-i-ssh-to-machine-a-via-b-in-one-command/311454#311454
 
 Host sofi-broker
-    Hostname peter.sofi.su.se
+    HostName peter.sofi.su.se
     User adam
-    IdentityFile /Users/adal7067/.ssh/gpg_key.pub
+    IdentityFile ~/.ssh/gpg_key.pub
 
 Host sofi.*
     Port 22
-    IdentityFile /Users/adal7067/.ssh/gpg_key.pub
+    IdentityFile ~/.ssh/gpg_key.pub
 
 Host sofi.*.r
     ProxyCommand ssh sofi-broker nc %h %p
 
 Host sofi.katla.*
     User adam
-    Hostname katla.sofi.su.se
+    HostName katla.sofi.su.se
     ForwardAgent yes
 
 Host sofi.katla_nas.*
     User adal7067
-    Hostname katla.sofi.su.se
+    HostName katla.sofi.su.se
 
 Host sofi.luke.*
     User adal7067
-    Hostname luke.sofi.su.se
+    HostName luke.sofi.su.se
 
 Host sofi.lucifer.*
     User adal7067
-    Hostname lucifer.sofi.su.se
+    HostName lucifer.sofi.su.se
 
 Host sofi.casa.*
     User adal7067
-    Hostname casa.sofi.su.se
+    HostName casa.sofi.su.se
