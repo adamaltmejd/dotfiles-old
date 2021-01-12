@@ -1,5 +1,4 @@
 .DS_Store
-
 .Rhistory
 
 # Update script log file
@@ -7,3 +6,4 @@
 
 # Local files (with possibly sensitive info)
 *.local
+local/**
