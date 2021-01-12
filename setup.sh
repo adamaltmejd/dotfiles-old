@@ -9,7 +9,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     # Install homebrew if not already installed
     if [ ! -x /usr/local/bin/brew ]; then
         echo "Installing Homebrew..."
-        /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
 
     # Put Brew on PATH temporarily
@@ -17,7 +17,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 
     # If brew is already installed make sure its updated
     brew update
-    brew upgrade --all --cleanup
+    brew upgrade
 
     # Run Homebrew through Brewfile
     brew bundle
