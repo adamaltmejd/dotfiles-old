@@ -6,21 +6,11 @@ PATH="/usr/bin:/bin:/usr/sbin:/sbin"
 
 # Additions
 
-# X11
-PATH="/opt/X11/bin:$PATH"
+# R
+PATH="/Library/Frameworks/R.framework/Resources:$PATH"
 
 # Homebrew
 PATH="/usr/local/bin:/usr/local/sbin:$PATH"
-
-# Gnuutils (can cause errors?)
-# PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/opt/findutils/libexec/gnubin:$PATH"
-
-# LLVM (can cause errors?)
-PATH="/usr/local/opt/llvm/bin:$PATH"
-
-# Python3 Defaults
-# causes errors with pip3 upgrade
-#PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
 # Perl
 PATH="$HOME/perl5/bin:$PATH"
@@ -43,10 +33,6 @@ MANPATH="/usr/share/man"
 
 # Homebrew
 MANPATH="/usr/local/share/man:/usr/local/man:$MANPATH"
-
-# GNU-UTILS
-#MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
-#MANPATH="/usr/local/opt/findutils/libexec/gnuman:$MANPATH"
 
 # Tex
 MANPATH="/Library/TeX/Distributions/.DefaultTeX/Contents/Man:$MANPATH"

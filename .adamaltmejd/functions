@@ -57,11 +57,9 @@ update_script_echo() {
     # http://luisspuerto.net/2018/01/install-r-100-homebrew-edition-with-openblas-openmp-my-version/
     Rscript --vanilla -e "update.packages(.libPaths()[1], ask=FALSE, checkBuilt=TRUE, repos = 'https://cran.rstudio.com/')" 2>&1
 
-    mv ~/.R/Makevars ~/.R/Makevars_debug
     cp -f ~/.R/Makevars-data-table ~/.R/Makevars
-    Rscript --vanilla -e 'remove.packages("data.table"); install.packages("data.table", type = "source", repos = "http://Rdatatable.github.io/data.table")' 2>&1
-    rm ~/.R/Makevars
-    mv ~/.R/Makevars_debug ~/.R/Makevars
+    Rscript --vanilla -e 'data.table::update.dev.pkg()' 2>&1
+    cp -f ~/.R/Makevars-default ~/.R/Makevars
 
     # Update Latex
 	echoerr "Updating LaTeX"
