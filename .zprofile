@@ -1,9 +1,17 @@
 #!/usr/local/bin/zsh
 # `.zprofile' is similar to `.zlogin', except that it is sourced before `.zshrc'.
 
+# Exports
 source ~/.adamaltmejd/exports
 source ~/.adamaltmejd/exports.local
 source ~/.adamaltmejd/path
+# Homebrew
+if [[ -x /usr/local/bin/brew ]]; then
+  eval $(/usr/local/bin/brew shellenv)
+fi
+if [[ -x /opt/homebrew/bin/brew ]]; then
+  eval $(/opt/homebrew/bin/brew shellenv)
+fi
 
 # Lazy-Load rbenv
 rbenv() {
@@ -18,7 +26,7 @@ perl() {
 }
 
 # Lazy-load virtualenvwrapper
-source /usr/local/bin/virtualenvwrapper_lazy.sh
+source $HOMEBREW_PREFIX/bin/virtualenvwrapper_lazy.sh
 
 #####
 # GPG for SSH

@@ -7,7 +7,7 @@ echo "Install applications with Homebrew? (Y/N)"
 read -k 1 REPLY; echo ''
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     # Install homebrew if not already installed
-    if [ ! -x /usr/local/bin/brew ]; then
+    if [[ ! -x /usr/local/bin/brew && ! -x /opt/homebrew/bin/brew ]]; then
         echo "Installing Homebrew..."
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
@@ -24,7 +24,6 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 
     # Remove outdated versions from the cellar.
     brew cleanup
-    brew cask cleanup
 
     # Check so everything is in order
     brew doctor
