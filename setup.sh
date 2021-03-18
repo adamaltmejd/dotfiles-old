@@ -75,7 +75,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 
     # SSH config
     if [ ! -d ~/.ssh/ ]; then; mkdir ~/.ssh; fi
-    echo "Include ~/.adamaltmejd/ssh-config" >> ~/.ssh/config
+    echo "Include ~/.adamaltmejd/ssh/*" >> ~/.ssh/config
 
     # Local R directory
     if [ ! -d ~/.R/ ]; then; mkdir ~/.R; fi

@@ -1,0 +1,16 @@
+Host pi.*
+    User pi
+    Port 8472
+    IdentityFile ~/.ssh/id_pi
+    ForwardAgent yes
+
+Host pi.sthlm.l
+    HostName 192.168.0.2
+    AddressFamily inet
+Host pi.sthlm.ts
+    HostName 100.72.116.98
+
+Host pi.breven.l
+    HostName breven.local
+Host pi.breven.ts
+    HostName 100.71.171.94

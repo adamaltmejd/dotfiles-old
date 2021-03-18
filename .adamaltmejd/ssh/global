@@ -1,0 +1,15 @@
+# Uses gpg keys for ssh, public key exported to ~/.ssh
+# see ssh-add -l for all available keys.
+# Requires IdentityFile to be specified for each host.
+# Only activate ForwardAgent on secure servers!
+
+Host *
+    AddKeysToAgent yes
+    UseKeychain yes
+    PasswordAuthentication yes
+    IdentitiesOnly yes
+
+Host github.com
+    HostName github.com
+    IdentityFile ~/.ssh/gpg_key.pub
+    User git
