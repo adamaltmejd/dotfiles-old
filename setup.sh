@@ -13,7 +13,12 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     fi
 
     # Put Brew on PATH temporarily
-    export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+    if [[ -x /opt/homebrew/bin/brew ]]; then
+        eval $(/opt/homebrew/bin/brew shellenv)
+    fi
+    if [[ -x /usr/local/bin/brew ]]; then
+        eval $(/usr/local/bin/brew shellenv)
+    fi
 
     # If brew is already installed make sure its updated
     brew update
@@ -75,15 +80,29 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     # Local R directory
     if [ ! -d ~/.R/ ]; then; mkdir ~/.R; fi
     if [ ! -d ~/.R/packages ]; then; mkdir ~/.R/packages; fi
-    cp ~/.adamaltmejd/R/Makevars-data-table ~/.R/Makevars-data-table
+    ln -s ~/.adamaltmejd/R/Makevars-data-table ~/.R/Makevars-data-table
+    ln -s ~/.adamaltmejd/R/Makevars-default ~/.R/Makevars-default
+    cp ~/.R/Makevars-default ~/.R/Makevars
 fi
 
 echo "Set zsh as default shell? (Y/N)"
 read -k 1 REPLY; echo ''
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     # Set default shell to homebrew zsh
-    sudo sh -c "echo /usr/local/bin/zsh >> /etc/shells"
-    chsh -s /usr/local/bin/zsh
+    if [[ -x /opt/homebrew/bin/brew ]]; then
+        eval $(/opt/homebrew/bin/brew shellenv)
+    fi
+    if [[ -x /usr/local/bin/brew ]]; then
+        eval $(/usr/local/bin/brew shellenv)
+    fi
+    sudo sh -c "echo $HOMEBREW_PREFIX/bin/zsh >> /etc/shells"
+    chsh -s $HOMEBREW_PREFIX/bin/zsh
+
+    echo "Install antibody bundle? (Y/N)"
+    read -k 1 REPLY; echo ''
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        antibody bundle < $HOME/.adamaltmejd/zsh-plugins > $HOME/.zsh_plugins.sh
+    fi
 fi
 
 echo 'Ta da!'

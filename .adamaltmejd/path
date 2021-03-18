@@ -9,10 +9,6 @@ PATH="/usr/bin:/bin:/usr/sbin:/sbin"
 # R
 PATH="/Library/Frameworks/R.framework/Resources:$PATH"
 
-# Homebrew
-#PATH="/usr/local/bin:/usr/local/sbin:$PATH"
-#PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
-
 # Perl
 PATH="$HOME/perl5/bin:$PATH"
 
@@ -31,9 +27,6 @@ export PATH
 # MANPATH
 
 MANPATH="/usr/share/man"
-
-# Homebrew
-#MANPATH="/usr/local/share/man:/usr/local/man:$MANPATH"
 
 # Tex
 MANPATH="/Library/TeX/Distributions/.DefaultTeX/Contents/Man:$MANPATH"
