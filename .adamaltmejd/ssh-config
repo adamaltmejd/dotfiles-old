@@ -29,6 +29,9 @@ Host sthlm.l
 Host sthlm.r
     HostName sthlm.adamaltmejd.com
 
+Host sthlm.ts
+    HostName 100.72.116.98
+
 # Breven (Raspberry Pi 4)
 Host breven.*
     User pi
@@ -42,6 +45,8 @@ Host breven.l
 Host breven.r
     HostName adamaltmejd.com
 
+Host breven.ts
+    HostName 100.71.171.94
 
 # SOFI compute server
 # Connects through broker, using proxycommand
