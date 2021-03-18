@@ -24,7 +24,6 @@ update_script_echo() {
 
     echoerr "Updating brew"
     brew update && brew upgrade
-    brew cask upgrade
     brew cleanup
 
     # Update zsh shell
@@ -39,18 +38,18 @@ update_script_echo() {
     python3 -m pip install --upgrade pip setuptools wheel virtualenv virtualenvwrapper
     export PIP_REQUIRE_VIRTUALENV=true
 
-    echoerr "Updating NPM"
-    npm install -g npm@latest 2>&1
-    for package in $(npm -g outdated --parseable --depth=0 | cut -d: -f2)
-    do
-        npm -g install "$package" 2>&1
-    done
+    # echoerr "Updating NPM"
+    # npm install -g npm@latest 2>&1
+    # for package in $(npm -g outdated --parseable --depth=0 | cut -d: -f2)
+    # do
+    #     npm -g install "$package" 2>&1
+    # done
 
     # Rubygems (ruby and rbenv are updated through brew)
-    echoerr "Updating ruby gems"
-    eval "$(rbenv init -)" # Make sure rbenv is initialized (lazy loading ON)
-    gem update --system
-    gem update
+    # echoerr "Updating ruby gems"
+    # eval "$(rbenv init -)" # Make sure rbenv is initialized (lazy loading ON)
+    # gem update --system
+    # gem update
 
     echoerr "Updating R"
     # If errors occur, follow install script here:
