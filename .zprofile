@@ -5,6 +5,10 @@
 source ~/.adamaltmejd/exports
 source ~/.adamaltmejd/exports.local
 source ~/.adamaltmejd/path
+# OSX path helper
+if [ -x /usr/libexec/path_helper ]; then
+    eval `/usr/libexec/path_helper -s`
+fi
 # Homebrew
 if [[ -x /usr/local/bin/brew ]]; then
   eval $(/usr/local/bin/brew shellenv)
