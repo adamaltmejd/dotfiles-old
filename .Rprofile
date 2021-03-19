@@ -30,6 +30,9 @@ options(renv.settings.vcs.ignore.library = TRUE)
 options(renv.settings.use.cache = TRUE)
 options(renv.settings.updates.check = FALSE)
 
+# VS Code R
+source(file.path(Sys.getenv(if (.Platform$OS.type == "windows") "USERPROFILE" else "HOME"), ".vscode-R", "init.R"))
+
 if (interactive() & !nzchar(Sys.getenv("RADIAN_VERSION"))) {
     # "q()": quit immediately and not save workspace.
     q <- function(save = "no", ...) { quit(save = save, ...) }

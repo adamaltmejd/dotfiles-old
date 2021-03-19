@@ -1,11 +1,21 @@
-# if you downloaded llvm manually above, replace with your chosen NEW_PATH/clang
-LLVM_LOC=/opt/homebrew/opt/llvm
+# Reworked from https://gist.github.com/ryanhomer/efad63c28827763822068a3f09012b19
+XC_LOC:=$(shell xcrun --show-sdk-path)
+LLVM_LOC:=$(shell brew --prefix llvm)
+GCC_LOC:=$(shell brew --prefix gcc)
+GETTEXT_LOC:=$(shell brew --prefix gettext)
 
 CC=$(LLVM_LOC)/bin/clang -fopenmp
 CXX=$(LLVM_LOC)/bin/clang++ -fopenmp
+CXX11=$(LLVM_LOC)/bin/clang++
+CXX14=$(LLVM_LOC)/bin/clang++
+CXX17=$(LLVM_LOC)/bin/clang++
+CXX1X=$(LLVM_LOC)/bin/clang++
 
-# -O3 should be faster than -O2 (default) level optimisation ..
 CFLAGS=-g -O3 -Wall -pedantic -std=gnu99 -mtune=native -pipe
 CXXFLAGS=-g -O3 -Wall -pedantic -std=c++11 -mtune=native -pipe
-LDFLAGS=-L/opt/homebrew/opt/gettext/lib -L$(LLVM_LOC)/lib -Wl,-rpath,$(LLVM_LOC)/lib
-CPPFLAGS=-I/opt/homebrew/opt/gettext/include -I$(LLVM_LOC)/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include
+LDFLAGS=-L"$(LLVM_LOC)/lib" -L"$(GETTEXT_LOC)/lib" -Wl,-rpath,$(LLVM_LOC)/lib --sysroot="$(XC_LOC)"
+CPPFLAGS=-I"$(GETTEXT_LOC)/include" -I"$(LLVM_LOC)/include" -isysroot "$(XC_LOC)"
+
+FC=$(GCC_LOC)/bin/gfortran
+F77=$(GCC_LOC)/bin/gfortran
+FLIBS=-L$(GCC_LOC)/lib/gcc/10/ -lm

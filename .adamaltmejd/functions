@@ -1,7 +1,7 @@
 #!/usr/local/bin/zsh
 
 antibody_update() {
-    antibody bundle < ~/.adamaltmejd/zsh-plugins > ~/.zsh_plugins.sh
+    antibody bundle < $HOME/.adamaltmejd/zsh-plugins > $HOME/.zsh_plugins.sh
     antibody update
 }
 
@@ -52,12 +52,9 @@ update_script_echo() {
     # gem update
 
     echoerr "Updating R"
-    # If errors occur, follow install script here:
-    # http://luisspuerto.net/2018/01/install-r-100-homebrew-edition-with-openblas-openmp-my-version/
-    Rscript --vanilla -e "update.packages(.libPaths()[1], ask=FALSE, checkBuilt=TRUE, repos = 'https://cran.rstudio.com/')" 2>&1
-
+    Rscript --silent --no-save --no-restore-data -e "remotes::update_packages(upgrade = 'always', dependencies = TRUE)" 2>&1
     cp -f ~/.R/Makevars-data-table ~/.R/Makevars
-    Rscript --vanilla -e 'data.table::update.dev.pkg()' 2>&1
+    Rscript --silent --no-save --no-restore-data -e "data.table::update.dev.pkg()" 2>&1
     cp -f ~/.R/Makevars-default ~/.R/Makevars
 
     # Update Latex
