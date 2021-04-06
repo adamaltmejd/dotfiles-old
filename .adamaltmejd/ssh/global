@@ -6,7 +6,7 @@
 Host *
     AddKeysToAgent yes
     UseKeychain yes
-    PasswordAuthentication yes
+    PasswordAuthentication no
     IdentitiesOnly yes
 
 Host github.com
