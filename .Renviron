@@ -1,6 +1,4 @@
 LANG=en_US.UTF-8
 R_LIBS_USER=~/.R/packages
 RENV_CONFIG_USER_PROFILE=TRUE
-
-PKG_CONFIG_PATH=/opt/X11/lib/pkgconfig
 R_REMOTES_UPGRADE="always"

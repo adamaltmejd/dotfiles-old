@@ -52,7 +52,7 @@ update_script_echo() {
     # gem update
 
     echoerr "Updating R"
-    Rscript --silent --no-save --no-restore-data -e "remotes::update_packages(upgrade = 'always', dependencies = TRUE)" 2>&1
+    Rscript --silent --no-save --no-restore-data -e "remotes::update_packages(upgrade = 'always')" 2>&1
     cp -f ~/.R/Makevars-data-table ~/.R/Makevars
     Rscript --silent --no-save --no-restore-data -e "data.table::update.dev.pkg()" 2>&1
     cp -f ~/.R/Makevars-default ~/.R/Makevars

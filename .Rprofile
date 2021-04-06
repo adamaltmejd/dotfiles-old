@@ -27,11 +27,30 @@ options(datatable.print.trunc.cols = TRUE)
 options(renv.settings.snapshot.type = "implicit")
 options(renv.settings.ignored.packages = c("devtools", "remotes", "colorout", "languageserver"))
 options(renv.settings.vcs.ignore.library = TRUE)
+options(renv.config.cache.enabled = TRUE)
+options(renv.config.cache.symlinks = TRUE)
 options(renv.settings.use.cache = TRUE)
 options(renv.settings.updates.check = FALSE)
 
-# VS Code R
-source(file.path(Sys.getenv(if (.Platform$OS.type == "windows") "USERPROFILE" else "HOME"), ".vscode-R", "init.R"))
+# VSCode attach
+if (file.exists(file.path(Sys.getenv(if (.Platform$OS.type == "windows") "USERPROFILE" else "HOME"), ".vscode-R", "init.R"))) {
+    source(file.path(Sys.getenv(if (.Platform$OS.type == "windows") "USERPROFILE" else "HOME"), ".vscode-R", "init.R"))
+}
+
+# Update external packages
+pkg_update <- function() {
+    update.packages(oldPkgs = c("remotes", "devtools", "renv", "jsonlite",
+                                "rlang", "lintr", "styler", "R.cache"),
+                    lib.loc = "~/.R/packages", ask = FALSE, checkBuilt = TRUE)
+    if (!("remotes" %in% installed.packages(lib.loc = "~/.R/packages")[,"Package"])) {
+        install.packages("remotes", lib = "~/.R/packages")
+    }
+    require("remotes", lib.loc = "~/.R/packages")
+    remotes::install_github(c("jalvesaq/colorout",
+                              "REditorSupport/languageserver"),
+                            upgrade = "always",
+                            lib = "~/.R/packages")
+}
 
 if (interactive() & !nzchar(Sys.getenv("RADIAN_VERSION"))) {
     # "q()": quit immediately and not save workspace.

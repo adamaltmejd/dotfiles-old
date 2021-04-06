@@ -32,7 +32,9 @@ export PIP_VIRTUALENV_BASE=$WORKON_HOME
 
 ###
 # R
-export R_HOME="/Library/Frameworks/R.framework/Resources"
+#export R_HOME="/Library/Frameworks/R.framework/Resources"
+#export R_HOME="/opt/homebrew/lib/R"
+export RSTUDIO_WHICH_R=/opt/homebrew/bin/R
 
 ###
 # Ruby

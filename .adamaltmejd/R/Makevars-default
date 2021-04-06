@@ -1,11 +1,8 @@
-# Reworked from https://gist.github.com/ryanhomer/efad63c28827763822068a3f09012b19
-# More info: https://stackoverflow.com/questions/43597632/understanding-the-contents-of-the-makevars-file-in-r-macros-variables-r-ma
-
-# Locations
 XC_LOC:=$(shell xcrun --show-sdk-path)
 LLVM_LOC:=$(shell brew --prefix llvm)
 GCC_LOC:=$(shell brew --prefix gcc)
 GETTEXT_LOC:=$(shell brew --prefix gettext)
+OMP_LOC:=$(shell brew --prefix libomp)
 
 CC=$(LLVM_LOC)/bin/clang
 CXX=$(LLVM_LOC)/bin/clang++
@@ -16,8 +13,11 @@ CXX1X=$(LLVM_LOC)/bin/clang++
 
 CFLAGS=-g -O2 -Wall -pedantic -std=gnu99 -mtune=native -pipe
 CXXFLAGS=-g -O2 -Wall -pedantic -std=c++11 -mtune=native -pipe
-LDFLAGS=-L"$(LLVM_LOC)/lib" -L"$(GETTEXT_LOC)/lib" -Wl,-rpath,$(LLVM_LOC)/lib --sysroot="$(XC_LOC)"
-CPPFLAGS=-I"$(GETTEXT_LOC)/include" -I"$(LLVM_LOC)/include" -isysroot "$(XC_LOC)"
+#LDFLAGS=-L"$(LLVM_LOC)/lib" -L"$(GETTEXT_LOC)/lib" -Wl,-rpath,$(LLVM_LOC)/lib --sysroot="$(XC_LOC)"
+LDFLAGS=-L"$(LLVM_LOC)/lib" -L"$(GETTEXT_LOC)/lib" -Wl,-rpath,$(LLVM_LOC)/lib --sysroot="$(XC_LOC)" -lomp
+#CPPFLAGS=-I"$(GETTEXT_LOC)/include" -I"$(LLVM_LOC)/include" -isysroot "$(XC_LOC)"
+CPPFLAGS=-I"$(GETTEXT_LOC)/include" -I"$(LLVM_LOC)/include" -isysroot "$(XC_LOC)" -I"$(OMP_LOC)/include" -Xclang -fopenmp
+
 
 FC=$(GCC_LOC)/bin/gfortran
 F77=$(GCC_LOC)/bin/gfortran
