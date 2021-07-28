@@ -40,7 +40,7 @@ export RSTUDIO_WHICH_R=/opt/homebrew/bin/R
 # Ruby
 # To use Homebrew openssl with ruby
 # Brew is slow, set to fixed value instead
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/openssl@1.1" # brew --prefix openssl@1.1
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/opt/homebrew/opt/openssl@1.1" # $(brew --prefix openssl@1.1)
 
 ####
 # LOCATION

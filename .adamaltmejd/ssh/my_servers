@@ -3,6 +3,7 @@ Host pi.*
     Port 8472
     IdentityFile ~/.ssh/id_pi
     ForwardAgent yes
+    RemoteForward /run/user/1000/gnupg/S.gpg-agent /Users/adam/.gnupg/S.gpg-agent.extra
 
 Host pi.sthlm.l
     HostName 192.168.0.2
@@ -12,5 +13,13 @@ Host pi.sthlm.ts
 
 Host pi.breven.l
     HostName breven.local
-Host pi.breven.ts
-    HostName 100.71.171.94
+Host pi.breven.z
+    HostName 10.99.1.2
+
+Host ubuntu-pve
+    User adam
+    HostName 10.99.1.4
+    Port 8472
+    IdentityFile ~/.ssh/gpg_key.pub
+    ForwardAgent yes
+    RemoteForward /run/user/1000/gnupg/S.gpg-agent /Users/adam/.gnupg/S.gpg-agent.extra

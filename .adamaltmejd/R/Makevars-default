@@ -13,11 +13,8 @@ CXX1X=$(LLVM_LOC)/bin/clang++
 
 CFLAGS=-g -O2 -Wall -pedantic -std=gnu99 -mtune=native -pipe
 CXXFLAGS=-g -O2 -Wall -pedantic -std=c++11 -mtune=native -pipe
-#LDFLAGS=-L"$(LLVM_LOC)/lib" -L"$(GETTEXT_LOC)/lib" -Wl,-rpath,$(LLVM_LOC)/lib --sysroot="$(XC_LOC)"
 LDFLAGS=-L"$(LLVM_LOC)/lib" -L"$(GETTEXT_LOC)/lib" -Wl,-rpath,$(LLVM_LOC)/lib --sysroot="$(XC_LOC)" -lomp
-#CPPFLAGS=-I"$(GETTEXT_LOC)/include" -I"$(LLVM_LOC)/include" -isysroot "$(XC_LOC)"
 CPPFLAGS=-I"$(GETTEXT_LOC)/include" -I"$(LLVM_LOC)/include" -isysroot "$(XC_LOC)" -I"$(OMP_LOC)/include" -Xclang -fopenmp
-
 
 FC=$(GCC_LOC)/bin/gfortran
 F77=$(GCC_LOC)/bin/gfortran
