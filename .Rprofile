@@ -23,7 +23,7 @@ options(datatable.print.trunc.cols = TRUE)
 
 # Renv
 options(renv.settings.snapshot.type = "implicit")
-options(renv.settings.ignored.packages = c("devtools", "remotes", "colorout", "languageserver"))
+options(renv.settings.ignored.packages = c("devtools", "roxygen2", "remotes", "colorout", "languageserver"))
 options(renv.settings.vcs.ignore.library = TRUE)
 options(renv.config.cache.enabled = TRUE)
 options(renv.config.cache.symlinks = TRUE)
@@ -87,24 +87,26 @@ if (interactive()) {
         #options(vsc.use_httpgd = FALSE | TRUE)
     }
 
-    # Update external packages
-    pkg_update <- function(force = FALSE) {
-        utils::update.packages(oldPkgs = c("remotes", "devtools", "roxygen2", "testthat",
+    # Update external packages (should work from inside Renv project)
+    pkg_update <- function() {
+        update.packages(oldPkgs = c("remotes", "devtools", "roxygen2", "testthat",
                                     "renv", "jsonlite", "knitr", "rmarkdown",
                                     "rlang", "lintr", "styler", "R.cache"),
                         lib.loc = "~/.R/packages", ask = FALSE, checkBuilt = TRUE)
-        if (!("remotes" %in% installed.packages(lib.loc = "~/.R/packages")[,"Package"])) {
-            utils::install.packages("remotes", lib = "~/.R/packages")
+        if (!("remotes" %in% installed.packages(lib.loc = "~/.R/packages")[, "Package"])) {
+            install.packages("remotes", lib = "~/.R/packages")
         }
-        library("remotes", lib.loc = "~/.R/packages")
+        require("remotes", lib.loc = "~/.R/packages")
         remotes::install_github(c("jalvesaq/colorout",
-                                "REditorSupport/languageserver"),
+                                "REditorSupport/languageserver",
+                                "jimhester/lintr",
+                                "r-lib/styler",
+                                "nx10/httpgd"),
                                 upgrade = "always",
-                                lib = "~/.R/packages",
-                                force = force)
+                                lib = "~/.R/packages")
 
         # Make sure styler has a permanent R.cache path
-        library(R.cache, lib.loc = "~/.R/packages")
+        require(R.cache, lib.loc = "~/.R/packages")
         R.cache::getCachePath()
     }
 

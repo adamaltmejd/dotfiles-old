@@ -6,6 +6,9 @@ PATH="/usr/bin:/bin:/usr/sbin:/sbin"
 
 # Additions
 
+# Homebrew (debug for VSCode)
+PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+
 # R
 PATH="/Library/Frameworks/R.framework/Resources:$PATH"
 
