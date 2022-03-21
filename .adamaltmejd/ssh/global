@@ -8,8 +8,11 @@ Host *
     UseKeychain yes
     PasswordAuthentication yes
     IdentitiesOnly yes
+    ControlMaster auto
+    ControlPath ~/.ssh/master-socket/%r@%h:%p
+    ControlPersist 600
 
 Host github.com
     HostName github.com
-    IdentityFile ~/.ssh/gpg_key.pub
+    IdentityFile ~/.ssh/id_rsa_yubikey.pub
     User git

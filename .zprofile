@@ -34,5 +34,5 @@ source $HOMEBREW_PREFIX/bin/virtualenvwrapper_lazy.sh
 
 #####
 # GPG for SSH
-gpgconf --launch gpg-agent
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent

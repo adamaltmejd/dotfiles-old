@@ -29,14 +29,15 @@ $ENV{'TZ'}='Europe/Stockholm'; # Time Zone
 # Include command to copy pdf to main folder
 #$latex = 'latex -interaction=batchmode -shell-escape -file-line-error %O %S; cp "%D" "%B.pdf"';
 #$pdflatex = 'pdflatex -synctex=1 -interaction=batchmode -shell-escape -file-line-error %O %S; cp "%D" "%B.pdf"';
-
-$latex = 'latex -interaction=batchmode -shell-escape -file-line-error %O %S';
-$pdflatex = 'pdflatex -synctex=1 -interaction=batchmode -shell-escape -file-line-error %O %S';
+#$latex = 'latex -interaction=batchmode -shell-escape -file-line-error %O %S';
+#$pdflatex = 'pdflatex -synctex=1 -interaction=batchmode -shell-escape -file-line-error %O %S';
 
 @generated_exts = (@generated_exts, 'synctex.gz');
 
-$pdf_mode = 1; # Generate PDF using pdflatex
-$dvi_mode = $postscript_mode = 0; # no DVI or PS files
+#$pdf_mode = 1; # Generate PDF using pdflatex
+$pdf_mode = 5; # Generate PDF using xelatex
+$dvi_mode = 0; # No DVI file
+$postscript_mode = 0; # No PS file
 
 # If nonzero, continue processing past minor latex errors including unrecognized cross references
 $force_mode = 0;
@@ -63,8 +64,5 @@ $recorder   = 1;
 
 $preview_mode = 0; # automatically run previewer
 $pdf_previewer = 'open -a Skim %O %S';
-
-
-
 
 

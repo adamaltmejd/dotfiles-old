@@ -24,6 +24,9 @@ PATH="/Library/TeX/texbin:$PATH"
 # STATA
 PATH="/Applications/Stata/StataSE.app/Contents/MacOS:$PATH"
 
+# Own executables
+PATH="$HOME/Code/bin:$PATH"
+
 export PATH
 
 #########################
