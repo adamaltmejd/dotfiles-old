@@ -91,17 +91,18 @@ if (interactive()) {
     pkg_update <- function() {
         update.packages(oldPkgs = c("remotes", "devtools", "roxygen2", "testthat",
                                     "renv", "jsonlite", "knitr", "rmarkdown",
-                                    "rlang", "lintr", "styler", "R.cache"),
+                                    "rlang", "R.cache"),
                         lib.loc = "~/.R/packages", ask = FALSE, checkBuilt = TRUE)
         if (!("remotes" %in% installed.packages(lib.loc = "~/.R/packages")[, "Package"])) {
             install.packages("remotes", lib = "~/.R/packages")
         }
         require("remotes", lib.loc = "~/.R/packages")
         remotes::install_github(c("jalvesaq/colorout",
-                                "REditorSupport/languageserver",
-                                "jimhester/lintr",
-                                "r-lib/styler",
-                                "nx10/httpgd"),
+                                  "REditorSupport/languageserver",
+                                  "jimhester/lintr",
+                                  "r-lib/styler",
+                                  "r-lib/ragg",
+                                  "nx10/httpgd"),
                                 upgrade = "always",
                                 lib = "~/.R/packages")
 

@@ -56,7 +56,7 @@ export TZ="Europe/Stockholm"
 
 # For GPG to work with Git
 # https://stackoverflow.com/questions/39494631/gpg-failed-to-sign-the-data-fatal-failed-to-write-commit-object-git-2-10-0
-export GPG_TTY=$(tty)
+export GPG_TTY="$(tty)"
 
 # Homebrew, cleanup after install
 export HOMEBREW_INSTALL_CLEANUP
@@ -83,3 +83,7 @@ export PERL5LIB="$HOME/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LI
 export PERL_LOCAL_LIB_ROOT="$HOME/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 export PERL_MB_OPT="--install_base \"$HOME/perl5\""; export PERL_MB_OPT;
 export PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
+
+# PKG-CONFIG
+# Jpeg-turbo for R packages ragg,jpeg
+export PKG_CONFIG_PATH="/opt/homebrew/opt/jpeg-turbo/lib/pkgconfig"
