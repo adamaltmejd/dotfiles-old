@@ -28,7 +28,7 @@ update_script_echo() {
 
     # Update zsh shell
     echoerr "Updating ZSH"
-    antibody_update 2>&1
+    antidote update 2>&1
 
     # Reload to use latest version for the rest of the update
     source ~/.zshrc
@@ -37,13 +37,6 @@ update_script_echo() {
     export PIP_REQUIRE_VIRTUALENV=false
     python3 -m pip install --upgrade pip setuptools wheel virtualenv virtualenvwrapper
     export PIP_REQUIRE_VIRTUALENV=true
-
-    # echoerr "Updating NPM"
-    # npm install -g npm@latest 2>&1
-    # for package in $(npm -g outdated --parseable --depth=0 | cut -d: -f2)
-    # do
-    #     npm -g install "$package" 2>&1
-    # done
 
     # Rubygems (ruby and rbenv are updated through brew)
     # echoerr "Updating ruby gems"
@@ -65,6 +58,15 @@ update_script_echo() {
 
     # Reload terminal
     source ~/.zshrc
+}
+
+update_npm() {
+    echoerr "Updating NPM"
+    npm install -g npm@latest 2>&1
+    for package in $(npm -g outdated --parseable --depth=0 | cut -d: -f2)
+    do
+        npm -g install "$package" 2>&1
+    done
 }
 
 # Pandoc pdf build

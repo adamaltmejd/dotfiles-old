@@ -11,10 +11,10 @@ fi
 
 source $HOME/.adamaltmejd/term-config
 
-# Antibody static loading
-source $HOME/.zsh_plugins.sh
-# To load (after including more plugins), run:
-# antibody bundle < $HOME/.adamaltmejd/zsh-plugins > $HOME/.zsh_plugins.sh
+# Antidote static loading
+source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
+# initialize plugins statically with ${ZDOTDIR:-~}/.zsh_plugins.txt
+antidote load
 
 # Load completions
 autoload -Uz compinit
