@@ -1,14 +1,11 @@
-# Host pi.*
-#     User pi
-#     Port 8472
-#     IdentityFile ~/.ssh/id_pi
-#     ForwardAgent yes
-#     RemoteForward /run/user/1000/gnupg/S.gpg-agent /Users/adam/.gnupg/S.gpg-agent.extra
-# Host pi.sthlm.l
-#     HostName 192.168.0.2
-#     AddressFamily inet
-# Host pi.sthlm.ts
-#     HostName 100.72.116.98
+Host sthlm.lan
+    User pi
+    HostName 100.72.116.98
+    Port 8472
+    IdentityFile ~/.ssh/id_pi
+    ForwardAgent yes
+    RemoteForward /run/user/1000/gnupg/S.gpg-agent /Users/adam/.gnupg/S.gpg-agent.extra
+    AddressFamily inet
 
 Host breven.lan
     User adam
@@ -17,3 +14,8 @@ Host breven.lan
     IdentityFile ~/.ssh/id_breven
     ForwardAgent yes
     RemoteForward /run/user/1000/gnupg/S.gpg-agent /Users/adam/.gnupg/S.gpg-agent.extra
+
+Host rutx12.lan
+    User root
+    HostName 10.99.1.1
+    IdentityFile ~/.ssh/id_breven
