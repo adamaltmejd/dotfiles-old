@@ -5,7 +5,7 @@ options(repos = c(CRAN = "https://cloud.r-project.org",
                   DT = "https://Rdatatable.gitlab.io/data.table"))
 
 # Editor
-options(editor="code")
+options(editor="ci")
 
 # Set timezone manually, for some reason using ENV variable throws errors
 Sys.setenv(TZ = "Europe/Stockholm")
@@ -24,11 +24,12 @@ options(datatable.print.trunc.cols = TRUE)
 # Renv
 options(renv.settings.snapshot.type = "implicit")
 options(renv.settings.ignored.packages = c("devtools", "roxygen2", "remotes", "colorout", "languageserver"))
+options(renv.settings.use.cache = TRUE)
 options(renv.settings.vcs.ignore.library = TRUE)
+
 options(renv.config.cache.enabled = TRUE)
 options(renv.config.cache.symlinks = TRUE)
-options(renv.settings.use.cache = TRUE)
-options(renv.settings.updates.check = FALSE)
+options(renv.config.updates.check = FALSE)
 
 if (interactive()) {
     # VSCode attach
