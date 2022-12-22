@@ -67,7 +67,7 @@
     tool = vscode
 
 [difftool "vscode"]
-    cmd = code --wait --diff $LOCAL $REMOTE
+    cmd = code-insiders --wait --diff $LOCAL $REMOTE
 
 [diff "bin"]
 	# Use `hexdump` to diff binary files
@@ -86,6 +86,10 @@
 [merge]
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
+
+[pull]
+	rebase = true
+	ff = true
 
 [push]
 	default = simple
