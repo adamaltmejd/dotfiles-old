@@ -34,12 +34,6 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     brew doctor
 fi
 
-echo "Set new MacOS default preferences? (Y/N)"
-read -k 1 REPLY; echo ''
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-    source .adamaltmejd/macos
-fi
-
 echo "Create symlinks (Y/N)"
 read -k 1 REPLY; echo ''
 if [[ $REPLY =~ ^[Yy]$ ]]; then
@@ -80,9 +74,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     # Local R directory
     if [ ! -d ~/.R/ ]; then; mkdir ~/.R; fi
     if [ ! -d ~/.R/packages ]; then; mkdir ~/.R/packages; fi
-    ln -s ~/.adamaltmejd/R/Makevars-data-table ~/.R/Makevars-data-table
-    ln -s ~/.adamaltmejd/R/Makevars-default ~/.R/Makevars-default
-    cp ~/.R/Makevars-default ~/.R/Makevars
+    ln -s ~/.adamaltmejd/R/Makevars ~/.R/Makevars
 fi
 
 echo "Set zsh as default shell? (Y/N)"
@@ -97,12 +89,6 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     fi
     sudo sh -c "echo $HOMEBREW_PREFIX/bin/zsh >> /etc/shells"
     chsh -s $HOMEBREW_PREFIX/bin/zsh
-
-    echo "Install antibody bundle? (Y/N)"
-    read -k 1 REPLY; echo ''
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-        antibody bundle < $HOME/.adamaltmejd/zsh-plugins > $HOME/.zsh_plugins.sh
-    fi
 fi
 
 echo 'Ta da!'
