@@ -1,5 +1,6 @@
 .DS_Store
 .Rhistory
+Brewfile.lock.json
 
 # Update script log file
 .adamaltmejd/update_script.log
@@ -7,4 +8,3 @@
 # Local files (with possibly sensitive info)
 *.local
 local/**
-Brewfile.lock.json
