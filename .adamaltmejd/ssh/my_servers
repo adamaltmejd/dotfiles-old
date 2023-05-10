@@ -1,11 +1,24 @@
-Host sthlm.lan
+Host sthlm_old.lan
     User pi
-    HostName 100.72.116.98
+    HostName 192.168.0.2
     Port 8472
     IdentityFile ~/.ssh/id_pi
     ForwardAgent yes
     RemoteForward /run/user/1000/gnupg/S.gpg-agent /Users/adam/.gnupg/S.gpg-agent.extra
     AddressFamily inet
+
+Host sthlm.lan
+    HostName sthlm.local
+
+Host sthlm.zt
+    HostName 10.99.7.223
+
+Host sthlm.*
+    User adam
+    Port 22
+    IdentityFile ~/.ssh/id_sthlm
+    ForwardAgent yes
+    RemoteForward /run/user/1000/gnupg/S.gpg-agent /Users/adam/.gnupg/S.gpg-agent.extra
 
 Host breven.lan
     User adam
