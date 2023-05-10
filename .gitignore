@@ -8,3 +8,9 @@ Brewfile.lock.json
 # Local files (with possibly sensitive info)
 *.local
 local/**
+
+# Don't track binaries
+.adamaltmejd/bin
+
+# Don't track Dropbox conflicts
+*conflicted copy*

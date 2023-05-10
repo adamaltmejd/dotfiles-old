@@ -58,9 +58,6 @@ export TZ="Europe/Stockholm"
 # https://stackoverflow.com/questions/39494631/gpg-failed-to-sign-the-data-fatal-failed-to-write-commit-object-git-2-10-0
 export GPG_TTY="$(tty)"
 
-# Homebrew, cleanup after install
-export HOMEBREW_INSTALL_CLEANUP
-
 # THEMING
 
 # Set the default Less options.
