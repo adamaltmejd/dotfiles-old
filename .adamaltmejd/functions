@@ -34,9 +34,10 @@ update_script_echo() {
     source ~/.zshrc
 
     echoerr "Updating core Python packages"
-    export PIP_REQUIRE_VIRTUALENV=false
-    python3 -m pip install --upgrade pip setuptools wheel virtualenv virtualenvwrapper
-    export PIP_REQUIRE_VIRTUALENV=true
+    pipx upgrade-all 2>&1
+    #export PIP_REQUIRE_VIRTUALENV=false
+    #python3 -m pip install --upgrade pip setuptools wheel virtualenv virtualenvwrapper
+    #export PIP_REQUIRE_VIRTUALENV=true
 
     # Rubygems (ruby and rbenv are updated through brew)
     # echoerr "Updating ruby gems"
@@ -45,10 +46,8 @@ update_script_echo() {
     # gem update
 
     echoerr "Updating R"
-    Rscript --silent --no-save --no-restore-data -e "remotes::update_packages(upgrade = 'always')" 2>&1
-    #cp -f ~/.R/Makevars-data-table ~/.R/Makevars
-    Rscript --silent --no-save --no-restore-data -e "data.table::update.dev.pkg()" 2>&1
-    #cp -f ~/.R/Makevars-default ~/.R/Makevars
+    Rscript --silent --no-save --no-restore-data -e "pkg_update()" 2>&1
+    Rscript --silent --no-save --no-restore-data -e "data.table::update_dev_pkg()" 2>&1
 
     # Update Latex
 	echoerr "Updating LaTeX"
@@ -88,16 +87,6 @@ function pandoc-pdf() {
         $1
 }
 
-function pi() {
-    # Connect to pi.local if its available, otherwise to pi.remote
-    if ping -c1 -W3 pi.local >/dev/null 2>&1
-    then
-        ssh pi.l
-    else
-        ssh pi.r
-    fi
-}
-
 # Create a new directory and enter it
 function mkd() {
 	mkdir -p "$@" && cd "$_";
@@ -135,15 +124,6 @@ function digga() {
 	dig +nocmd "$1" any +multiline +noall +answer;
 }
 
-# `c`: VS Code
-function c() {
-	if [ $# -eq 0 ]; then
-		code .;
-	else
-		code "$@";
-	fi;
-}
-
 # `o` with no arguments opens the current directory, otherwise opens the given
 # location
 function o() {
@@ -166,3 +146,10 @@ function tre() {
 function gpip3() {
     PIP_REQUIRE_VIRTUALENV="0" pip3 "$@"
 }
+
+# Erase current history
+function erase_history { local HISTSIZE=0; }
+function zshaddhistory_erase_history {
+  [[ $1 != [[:space:]]#erase_history[[:space:]]# ]]
+}
+zshaddhistory_functions+=(zshaddhistory_erase_history)
