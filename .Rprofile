@@ -5,7 +5,7 @@ options(repos = c(CRAN = "https://cloud.r-project.org",
                   DT = "https://Rdatatable.gitlab.io/data.table"))
 
 # Editor
-options(editor="ci")
+options(editor = "ci")
 
 # Set timezone manually, for some reason using ENV variable throws errors
 Sys.setenv(TZ = "Europe/Stockholm")
@@ -39,16 +39,16 @@ if (interactive()) {
         # VSCode session watcher settings
         # Watch global environemnt symbols to provide hover on and completion after session symbol.
         # Only specify in .Rprofile since it only takes effect on session startup.
-        options(vsc.globalenv = TRUE)
+        # options(vsc.globalenv = TRUE)
 
         # Which view column to show the plot file on graphics update
         # Use FALSE to diable plot watcher so that the default R plot device is used.
         # Only specify in .Rprofile since it only takes effect on session startup.
-        options(vsc.plot = "Beside")
+        # options(vsc.plot = "Beside")
 
         # The arguments for the png device to replay user graphics to show in VSCode.
         # Ignored if options(vsc.plot = FALSE).
-        options(vsc.dev.args = list(width = 800, height = 600, type = "cairo-png"))
+        # options(vsc.dev.args = list(width = 800, height = 600, type = "cairo-png"))
 
         # Which view column to show the WebView triggered by browser (e.g. shiny apps)?
         # Use FALSE to open in external web browser.
@@ -88,30 +88,6 @@ if (interactive()) {
         #options(vsc.use_httpgd = FALSE | TRUE)
     }
 
-    # Update external packages (should work from inside Renv project)
-    pkg_update <- function() {
-        update.packages(oldPkgs = c("remotes", "devtools", "roxygen2", "testthat",
-                                    "renv", "jsonlite", "knitr", "rmarkdown",
-                                    "rlang", "R.cache"),
-                        lib.loc = "~/.R/packages", ask = FALSE, checkBuilt = TRUE)
-        if (!("remotes" %in% installed.packages(lib.loc = "~/.R/packages")[, "Package"])) {
-            install.packages("remotes", lib = "~/.R/packages")
-        }
-        require("remotes", lib.loc = "~/.R/packages")
-        remotes::install_github(c("jalvesaq/colorout",
-                                  "REditorSupport/languageserver",
-                                  "jimhester/lintr",
-                                  "r-lib/styler",
-                                  "r-lib/ragg",
-                                  "nx10/httpgd"),
-                                upgrade = "always",
-                                lib = "~/.R/packages")
-
-        # Make sure styler has a permanent R.cache path
-        require(R.cache, lib.loc = "~/.R/packages")
-        R.cache::getCachePath()
-    }
-
     # If radian is not running
     if (!nzchar(Sys.getenv("RADIAN_VERSION"))) {
         # "q()": quit immediately and not save workspace.
@@ -131,4 +107,28 @@ if (interactive()) {
             onexit = TRUE
         ))
     }
+}
+
+# Update external packages (should work from inside Renv project)
+pkg_update <- function() {
+    update.packages(oldPkgs = c("remotes", "devtools", "roxygen2", "testthat",
+                                "renv", "jsonlite", "knitr", "rmarkdown",
+                                "rlang", "R.cache"),
+                    lib.loc = "~/.R/packages", ask = FALSE, checkBuilt = TRUE)
+    if (!("remotes" %in% installed.packages(lib.loc = "~/.R/packages")[, "Package"])) {
+        install.packages("remotes", lib = "~/.R/packages")
+    }
+    require("remotes", lib.loc = "~/.R/packages")
+    remotes::install_github(c("jalvesaq/colorout",
+                              "REditorSupport/languageserver",
+                              "jimhester/lintr",
+                              "r-lib/styler",
+                              "r-lib/ragg",
+                              "nx10/httpgd"),
+                            upgrade = "always",
+                            lib = "~/.R/packages")
+
+    # Make sure styler has a permanent R.cache path
+    require(R.cache, lib.loc = "~/.R/packages")
+    R.cache::getCachePath()
 }
