@@ -27,6 +27,7 @@ PATH="/Applications/Stata/StataSE.app/Contents/MacOS:$PATH"
 # Own executables
 PATH="$HOME/Code/bin:$PATH"
 PATH="$HOME/.adamaltmejd/bin:$PATH"
+PATH="$HOME/.local/bin:$PATH"
 
 export PATH
 
