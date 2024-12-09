@@ -35,9 +35,6 @@ update_script_echo() {
 
     echoerr "Updating core Python packages"
     pipx upgrade-all 2>&1
-    #export PIP_REQUIRE_VIRTUALENV=false
-    #python3 -m pip install --upgrade pip setuptools wheel virtualenv virtualenvwrapper
-    #export PIP_REQUIRE_VIRTUALENV=true
 
     # Rubygems (ruby and rbenv are updated through brew)
     # echoerr "Updating ruby gems"

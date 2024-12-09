@@ -28,14 +28,6 @@ Host breven.lan
     ForwardAgent yes
     RemoteForward /run/user/1000/gnupg/S.gpg-agent /Users/adam/.gnupg/S.gpg-agent.extra
 
-Host breven_new.lan
-    User adam
-    HostName 10.99.1.62
-    Port 8472
-    IdentityFile ~/.ssh/id_breven
-    ForwardAgent yes
-    RemoteForward /run/user/1000/gnupg/S.gpg-agent /Users/adam/.gnupg/S.gpg-agent.extra
-
 Host rutx50.lan
     User root
     HostName 10.99.1.1
